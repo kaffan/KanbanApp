@@ -1,5 +1,6 @@
 html, body{
   height: 100%;
+  background-color: rgb(244, 247, 253);
 }
 .App {
   text-align: center;

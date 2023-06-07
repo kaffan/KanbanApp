@@ -37,7 +37,7 @@ const SideColumn = () =>{
                     lineHeight:"20px",
                     fontWeight:"700",
                     width:"92%",
-                    textAlign:"left"
+                    textAlign:"left",
                 }}>
                     <Grid item
                     style={{

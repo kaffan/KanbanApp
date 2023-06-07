@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Switch } from "@mui/material";
 import { Fragment } from "react"
 
 const SideBarFoot = () =>{
@@ -8,30 +8,42 @@ const SideBarFoot = () =>{
                 width:"100%",
                 paddingLeft:"9%"
             }}>
-                <Grid item>
+                <Grid item sx={{
+                    width:"100%"
+                }}>
                     <div style={{
                         width:"93%",
-                        height:"48px"
+                        height:"48px",
+                        backgroundColor:"#F4F7FD",
+                        filter:"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
                     }}>
-                        <Grid container direction="column" sx={{
-                            width:"60%",
-                            alignContent:"center",
-                            alignItems:"center"
+                        <Grid container direction="row" sx={{
+                            width:"100%",
+                            justifyContent:"center",
+                            alignItems:"center",
+                            height:"48px"
                         }}>
                             <Grid item>
                                 <img src="assets/icon-light-theme.svg" />
                             </Grid>
                             <Grid item>
-                            <img src="assets/icon-light-theme.svg" />
+                                <Switch></Switch>
                             </Grid>
                             <Grid item>
-
+                                <img src="assets/icon-dark-theme.svg" />
                             </Grid>
                         </Grid>
                     </div>
                 </Grid>
-                <Grid item>
-
+                <Grid item sx={{
+                    width:"100%",
+                    textAlign:"left",
+                    height:"38px",
+                    paddingTop:"15px"
+                }}>
+                    <img src="assets/icon-hide-sidebar.svg"  />
+                    &nbsp;&nbsp;
+                    Hide Sidebar
                 </Grid>
             </Grid>
         </Fragment>
