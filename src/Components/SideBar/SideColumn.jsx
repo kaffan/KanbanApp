@@ -9,11 +9,17 @@ const StyledDiv = styled('div')({
     color:"#979797",
     position:"relative"
 });
-const InnerDiv = styled('div')({
+const InnerDiv = styled('div',{
+    shouldForwardProp:(prop)=>prop
+})({
     backgroundColor:"white",
     borderRadius:"0px 100px 100px 0px",
     position:"relative",
-    height:"100%"
+    height:"100%",
+    '&:hover':{
+        backgroundColor:"rgb(244, 247, 253)",
+        color:"#635FC7"
+    }
 });
 
 const SpanEle = styled('div')(({obj="inherit", size="inherit"})=>({

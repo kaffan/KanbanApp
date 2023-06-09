@@ -4,6 +4,7 @@ import SideBar from "../SideBar/SideBar";
 import SideColumn from "../SideBar/SideColumn";
 import NoBoard from "../Boards/NoBoard";
 import { Grid } from "@mui/material";
+import ShowSideBar from "../SideBar/ShowSideBar";
 
 const MainPage = () =>{
     return(
@@ -22,6 +23,7 @@ const MainPage = () =>{
                 position:"relative"
             }}>
                 <NoBoard></NoBoard>
+                <ShowSideBar></ShowSideBar>
             </Grid>
         </Grid>
        
