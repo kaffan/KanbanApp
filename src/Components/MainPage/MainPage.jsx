@@ -5,7 +5,7 @@ import SideColumn from "../SideBar/SideColumn";
 import NoBoard from "../Boards/NoBoard";
 import { Grid } from "@mui/material";
 import ShowSideBar from "../SideBar/ShowSideBar";
-
+import WholeBar from "../SideBar/WholeBar";
 const MainPage = () =>{
     return(
     <Fragment>
@@ -16,7 +16,9 @@ const MainPage = () =>{
             <Grid item  sx={{
                 width:"21%"
             }}>
-                <SideBar></SideBar>
+                {/* <SideBar></SideBar>
+                 */}
+                 <WholeBar></WholeBar>
             </Grid>
             <Grid item sx={{
                 width:"79%",

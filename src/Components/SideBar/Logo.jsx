@@ -6,7 +6,7 @@ const Logo = () =>{
         <Fragment>
             <div style={{
                 width:"100%",
-                height:"97px",
+                height:"100%",
                 backgroundColor:"white",
                 position:"relative"
             }}>

@@ -3,25 +3,24 @@ import Logo from './Logo';
 import { Fragment } from 'react';
 import SideBarFoot from './SideBarFoot';
 import { Grid } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const SideBar = () =>{
     return(
         <Fragment>
             <Grid direction="row" container style={{
-                height:"100%",
-                width:"100%",
-                boxShadow:"0.5px 0.5px 2px #979797",
-                backgroundColor:"white"
+                backgroundColor:"white",
+                height:"100%"
             }}>
-                <Grid item sx={{
+                {/* <Grid item sx={{
                     width:"100%",
                     height:"15%"
                 }}>
                     <Logo></Logo>
-                </Grid>
+                </Grid> */}
                 <Grid item sx={{
                     width:"100%",
-                    height:"60%",
+                    height:"75%",
                     overflow:"auto"
                 }}>
                     <SideColumn></SideColumn>
