@@ -62,6 +62,78 @@ const SideColumn = () =>{
                             </InnerDiv>
                         </StyledDiv>
                     </Grid>
+                    <Grid item
+                    style={{
+                    }}>
+                        <StyledDiv>
+                            <InnerDiv>
+                                <SpanEle><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
+                            </InnerDiv>
+                        </StyledDiv>
+                    </Grid>
+                    <Grid item
+                    style={{
+                    }}>
+                        <StyledDiv>
+                            <InnerDiv>
+                                <SpanEle><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
+                            </InnerDiv>
+                        </StyledDiv>
+                    </Grid>
+                    <Grid item
+                    style={{
+                    }}>
+                        <StyledDiv>
+                            <InnerDiv>
+                                <SpanEle><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
+                            </InnerDiv>
+                        </StyledDiv>
+                    </Grid>
+                    <Grid item
+                    style={{
+                    }}>
+                        <StyledDiv>
+                            <InnerDiv>
+                                <SpanEle><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
+                            </InnerDiv>
+                        </StyledDiv>
+                    </Grid>
+                    <Grid item
+                    style={{
+                    }}>
+                        <StyledDiv>
+                            <InnerDiv>
+                                <SpanEle><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
+                            </InnerDiv>
+                        </StyledDiv>
+                    </Grid>
+                    <Grid item
+                    style={{
+                    }}>
+                        <StyledDiv>
+                            <InnerDiv>
+                                <SpanEle><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
+                            </InnerDiv>
+                        </StyledDiv>
+                    </Grid>
+                    <Grid item
+                    style={{
+                    }}>
+                        <StyledDiv>
+                            <InnerDiv>
+                                <SpanEle><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
+                            </InnerDiv>
+                        </StyledDiv>
+                    </Grid>
+                    <Grid item
+                    style={{
+                    }}>
+                        <StyledDiv>
+                            <InnerDiv>
+                                <SpanEle><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
+                            </InnerDiv>
+                        </StyledDiv>
+                    </Grid>
                 </Grid>
         </Fragment>
     );

@@ -1,7 +1,12 @@
 import { Grid, Switch } from "@mui/material";
 import { Fragment } from "react"
+import { useSelector, useDispatch } from "react-redux";
+import { ChangeState } from "../../Reducers/ShowSideBar";
 
 const SideBarFoot = () =>{
+
+    // const state = useSelector((state)=>state.ShowSideBar);
+    const Dispatch = useDispatch();
     return(
         <Fragment>
             <Grid container sx={{
@@ -39,8 +44,9 @@ const SideBarFoot = () =>{
                     width:"100%",
                     textAlign:"left",
                     height:"38px",
-                    paddingTop:"15px"
-                }}>
+                    paddingTop:"15px",
+                    cursor:"pointer"
+                }} onClick={()=>Dispatch(ChangeState())}>
                     <img src="assets/icon-hide-sidebar.svg"  />
                     &nbsp;&nbsp;
                     Hide Sidebar

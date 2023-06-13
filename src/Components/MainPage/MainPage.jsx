@@ -6,7 +6,10 @@ import NoBoard from "../Boards/NoBoard";
 import { Grid } from "@mui/material";
 import ShowSideBar from "../SideBar/ShowSideBar";
 import WholeBar from "../SideBar/WholeBar";
+import { useSelector } from "react-redux";
+
 const MainPage = () =>{
+    const state = useSelector((state)=>state.ShowSideBar);
     return(
     <Fragment>
         <Grid container direction="row" sx={{
@@ -25,7 +28,7 @@ const MainPage = () =>{
                 position:"relative"
             }}>
                 <NoBoard></NoBoard>
-                <ShowSideBar></ShowSideBar>
+                {!state && <ShowSideBar></ShowSideBar>}
             </Grid>
         </Grid>
        
