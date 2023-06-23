@@ -14,22 +14,22 @@ const WholeBar = () =>{
                 width:"100%",
                 backgroundColor:"rgb(244, 247, 253)"
             }}>
-                <Grid item sx={{
+                {/* <Grid item sx={{
                     height:"18%",
                     width:"100%",
                     boxShadow:"0.5px 0.5px 2px #979797",
                 }}>
                     <Logo></Logo>
-                </Grid>
-                {state &&<Grid item sx={{
-                    height:"82%",
+                </Grid> */}
+                <Grid item sx={{
+                    height:"100%",
                     width:"100%",
-                    boxShadow:"0.5px 0.5px 2px #979797",
+                    // boxShadow:"0.5px 0.5px 2px #979797",
 
                 }}>
                     <SideBar></SideBar>
                 </Grid>
-                }
+                
             </Grid>
         </Fragment>
     );

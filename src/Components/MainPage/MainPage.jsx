@@ -7,31 +7,47 @@ import { Grid } from "@mui/material";
 import ShowSideBar from "../SideBar/ShowSideBar";
 import WholeBar from "../SideBar/WholeBar";
 import { useSelector } from "react-redux";
+// import Header from "../Header/Header";
 
 const MainPage = () =>{
     const state = useSelector((state)=>state.ShowSideBar);
     return(
     <Fragment>
-        <Grid container direction="row" sx={{
-            width:"100%",
-            height:"100%"
-        }}>
-            <Grid item  sx={{
-                width:"21%"
+            <Grid container direction="column" sx={{
+                position: "relative",
+                height: "100%",
+                width: "100%"
             }}>
-                {/* <SideBar></SideBar>
-                 */}
-                 <WholeBar></WholeBar>
+                <Grid item sx={{
+                    height: "15%",
+                    width: "100%",
+                }}>
+                    <Header></Header>
+                </Grid>
+                <Grid item sx={{
+                    height: "85%",
+                    width: "100%"
+                }}>
+                    <Grid container direction="row" sx={{
+                        width: "100%",
+                        height: "100%"
+                    }}>
+                        {state && <Grid item sx={{
+                            width: "21%"
+                        }}>
+                            <WholeBar></WholeBar>
+                        </Grid>
+                        }
+                        <Grid item sx={{
+                            width: (state) ? "79%" :"100%",
+                            position: "relative"
+                        }}>
+                            <NoBoard></NoBoard>
+                            {!state && <ShowSideBar></ShowSideBar>}
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid item sx={{
-                width:"79%",
-                position:"relative"
-            }}>
-                <NoBoard></NoBoard>
-                {!state && <ShowSideBar></ShowSideBar>}
-            </Grid>
-        </Grid>
-       
     </Fragment>
     );
 }

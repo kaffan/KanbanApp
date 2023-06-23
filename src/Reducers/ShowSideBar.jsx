@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const initialState = 0;
+const initialState = false;
 
  export const ShowSideBar = createSlice({
     name :"ShowSideBar",

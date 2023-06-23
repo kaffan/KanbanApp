@@ -8,10 +8,11 @@ const Logo = () =>{
                 width:"100%",
                 height:"100%",
                 backgroundColor:"white",
-                position:"relative"
+                position:"relative",
+                // boxShadow: "4px 0px 4px rgba(0, 0, 0, 0.25)"
             }}>
                 <Grid container direction="column" sx={{
-                    position:"relative",
+                    position:"absolute",
                     left:"12%",
                     right:"0",
                     top:"33px",
