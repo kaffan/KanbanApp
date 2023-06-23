@@ -66,6 +66,7 @@ const AddNewBoard = () =>{
                     borderColor:"#FCE9F1"
                   }}
                 />
+                
                 <br></br>
                 <label style={{
                     padding:"5px 0",
