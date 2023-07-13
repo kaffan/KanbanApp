@@ -13,7 +13,7 @@ const AddNewBoard = () =>{
   console.log(state);
   const columnHandler = () =>{
     if(ref2.value!==''){
-      
+
     }
   }
   const clickHandler = () =>{
@@ -73,7 +73,7 @@ const AddNewBoard = () =>{
           <Grid item sx={{
             padding:"10px"
           }}>
-            <Button onClick={cloumnHandler} sx={{margin:"0 2px"}} variant="contained">Add Column</Button>
+            <Button onClick={columnHandler} sx={{margin:"0 2px"}} variant="contained">Add Column</Button>
             <Button onClick={toggleDisplayState} sx={{margin:"0 2px"}} variant="outlined" color="warning">Close</Button>
           </Grid>
         </Grid>
