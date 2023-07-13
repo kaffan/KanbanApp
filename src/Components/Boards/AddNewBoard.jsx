@@ -1,19 +1,29 @@
 import { Button, Grid } from "@mui/material";
-import { Fragment, useRef } from "react";
+import { Fragment, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import { toggleDisplay } from "../../Reducers/AddNewBoardB";
 import { useDispatch, useSelector } from "react-redux";
 
 const AddNewBoard = () =>{
   const state = useSelector((state)=>state.AddNewBoardB);
+  const [ displayState, SetDisplayState] = useState("none");
   const Dispatch = useDispatch();
+  const ref = useRef(null);
+  const ref2 = useRef(null);
+  console.log(state);
+  const columnHandler = () =>{
+    if(ref2.value!==''){
+      
+    }
+  }
   const clickHandler = () =>{
     console.log(ref.current.style.display);
     const currentDisplay = ref.current.style.display;
     Dispatch(toggleDisplay(currentDisplay));
   }
-  const ref = useRef(null);
-  console.log(state);
+  const toggleDisplayState = () =>{
+    (displayState==='none') ? SetDisplayState('block') : SetDisplayState('none'); 
+  }
   return (
     <Fragment>
       <div
@@ -34,19 +44,37 @@ const AddNewBoard = () =>{
           position:"relative",
           zIndex:"4",
           top:"43%",
-          left:"33%",
-          backgroundColor:"pink",
+          left:"34%",
+          backgroundColor:"lightgrey",
+          display: displayState,
           width: "30%",
           padding:"30px"
         }}>
-          <Grid item>
-            <span>New Column Name</span>
+          <Grid item sx={{
+            padding:"10px"
+          }}>
+            <span style={{
+              fontWeight:"700"
+            }}>Column Name</span>
           </Grid>
-          <Grid item>
-            <input type="text"></input>
+          <Grid item sx={{
+            padding:"10px"
+          }}>
+            <input type="text"
+            ref={ref2}
+            style={{
+              padding:"4px 4px",
+              border:"1px ",
+              boxShadow:"1px 1px 5px black",
+              borderColor:"#FCE9F1",
+              width:"90%"
+            }}></input>
           </Grid>
-          <Grid item>
-            <Button type="button">Add Column</Button>
+          <Grid item sx={{
+            padding:"10px"
+          }}>
+            <Button onClick={cloumnHandler} sx={{margin:"0 2px"}} variant="contained">Add Column</Button>
+            <Button onClick={toggleDisplayState} sx={{margin:"0 2px"}} variant="outlined" color="warning">Close</Button>
           </Grid>
         </Grid>
         <Grid
@@ -120,7 +148,7 @@ const AddNewBoard = () =>{
               margin:"5px",
               padding:"5px"
           }}>
-            <Button
+            <Button onClick={toggleDisplayState}
               sx={{
               width:"100%",
               fontWeight:"600",
