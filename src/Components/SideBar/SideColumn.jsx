@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
 import { Fragment } from "react";
+import { useDispatch } from "react-redux";
+import { toggleDisplay } from "../../Reducers/AddNewBoardB";
 
 const StyledDiv = styled('div')({
     fontFamily: `'Plus Jakarta Sans', sans-serif`,
@@ -35,6 +37,7 @@ const SpanEle = styled('div')(({obj="inherit", size="inherit"})=>({
 }));
 
 const SideColumn = () =>{
+    const Dispatch = useDispatch();
     return(
         <Fragment>
                 <Grid container direction="column" sx={{
@@ -54,12 +57,13 @@ const SideColumn = () =>{
                         </StyledDiv>
                     </Grid>
                     <Grid item
+                    onClick={()=>Dispatch(toggleDisplay('none'))}
                     style={{
                         cursor:"pointer"
                     }}>
                         <StyledDiv>
                             <InnerDiv>
-                                <SpanEle><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
+                                <SpanEle ><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
                             </InnerDiv>
                         </StyledDiv>
                     </Grid>

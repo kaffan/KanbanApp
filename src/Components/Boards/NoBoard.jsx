@@ -1,7 +1,10 @@
 import { Button, Grid } from "@mui/material";
 import { Fragment } from "react";
+import { toggleDisplay } from "../../Reducers/AddNewBoardB";
+import { useDispatch } from "react-redux";
 
 const NoBoard = () =>{
+    const Dispatch = useDispatch();
     return(
         <Fragment>
             <Grid container direction="column" sx={{
@@ -23,7 +26,7 @@ const NoBoard = () =>{
                     &nbsp;
                 </Grid>
                 <Grid item>
-                    <Button variant="contained" sx={{
+                    <Button onClick={()=>Dispatch(toggleDisplay('none'))} variant="contained" sx={{
                         textTransform:"none",
                         borderRadius:"50px",
                         backgroundColor:"#635FC7",

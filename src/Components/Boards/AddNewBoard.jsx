@@ -1,23 +1,56 @@
 import { Button, Grid } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { createPortal } from "react-dom";
+import { toggleDisplay } from "../../Reducers/AddNewBoardB";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddNewBoard = () =>{
+  const state = useSelector((state)=>state.AddNewBoardB);
+  const Dispatch = useDispatch();
+  const clickHandler = () =>{
+    console.log(ref.current.style.display);
+    const currentDisplay = ref.current.style.display;
+    Dispatch(toggleDisplay(currentDisplay));
+  }
+  const ref = useRef(null);
+  console.log(state);
   return (
     <Fragment>
       <div
-        // onClick={}
+        ref = {ref}
+        onClick={clickHandler}
         style={{
+          display: state,
           position: "absolute",
           width: "100%",
           height: "100vh",
           zIndex:"3",
           backgroundColor:"rgba(0,0,0,0.6)",
           backdropFilter:"blur(1px)",
-          display:"none"
         }}
       >
+        <Grid container direction="column" onClick={(e)=>e.stopPropagation()}
+        sx={{
+          position:"relative",
+          zIndex:"4",
+          top:"43%",
+          left:"33%",
+          backgroundColor:"pink",
+          width: "30%",
+          padding:"30px"
+        }}>
+          <Grid item>
+            <span>New Column Name</span>
+          </Grid>
+          <Grid item>
+            <input type="text"></input>
+          </Grid>
+          <Grid item>
+            <Button type="button">Add Column</Button>
+          </Grid>
+        </Grid>
         <Grid
+          onClick={(e)=>e.stopPropagation()}
           container
           direction="column"
           sx={{
@@ -78,14 +111,17 @@ const AddNewBoard = () =>{
               }}>Columns</label>
               <Grid container sx={{
                   overflowY:"auto",
-              }}></Grid>
+              }}>
+                
+              </Grid>
             </form>
           </Grid>
           <Grid item sx={{
               margin:"5px",
               padding:"5px"
           }}>
-            <Button sx={{
+            <Button
+              sx={{
               width:"100%",
               fontWeight:"600",
               textTransform:"capitalize",
