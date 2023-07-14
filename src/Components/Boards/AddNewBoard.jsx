@@ -7,13 +7,16 @@ import { useDispatch, useSelector } from "react-redux";
 const AddNewBoard = () =>{
   const state = useSelector((state)=>state.AddNewBoardB);
   const [ displayState, SetDisplayState] = useState("none");
+  const [ columnState, SetColumnState ] = useState([]);
   const Dispatch = useDispatch();
   const ref = useRef(null);
   const ref2 = useRef(null);
   console.log(state);
   const columnHandler = () =>{
     if(ref2.value!==''){
-
+      console.log(ref2.current.value);
+      SetColumnState((prevState)=>[...prevState,ref2.current.value]);
+      toggleDisplayState();
     }
   }
   const clickHandler = () =>{
@@ -137,10 +140,33 @@ const AddNewBoard = () =>{
                   color:"lightgray",
                   fontWeight:"700"
               }}>Columns</label>
-              <Grid container sx={{
-                  overflowY:"auto",
+              <Grid container direction="row" sx={{
+                  overflowY:"scroll",
+                  maxHeight:"6em",
+                  width:"100%"
               }}>
-                
+                {(columnState) && columnState.map((ele,i)=>{
+                  return(
+                    <Grid sx={{
+                      width:"100%"
+                    }} key={i} item>
+                      <Grid sx={{
+                        margin:"5px 0",
+                        width:"100%"
+                      }} direction="row" container>
+                        <Grid sx={{
+                          width:"90%",
+                          border:"1px solid",
+                          padding:"5px",
+                          borderRadius:"25px"
+                        }} item>{ele}</Grid>
+                        <Grid sx={{
+                          padding:"5px"
+                        }} item>X</Grid>
+                      </Grid>
+                    </Grid>
+                  );
+                })}
               </Grid>
             </form>
           </Grid>
