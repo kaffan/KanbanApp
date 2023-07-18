@@ -13,11 +13,18 @@ const AddNewBoard = () =>{
   const ref2 = useRef(null);
   console.log(state);
   const columnHandler = () =>{
-    if(ref2.value!==''){
+    if(ref2.current.value!==''){
       console.log(ref2.current.value);
       SetColumnState((prevState)=>[...prevState,ref2.current.value]);
+      ref2.current.value = '';
       toggleDisplayState();
     }
+  }
+  const CancelColumnHandler = (i) =>{
+    // console.log(i)
+    SetColumnState((prevState)=>{
+      return prevState.filter((ele,_,arr)=>ele!=arr[i]);
+    });
   }
   const clickHandler = () =>{
     console.log(ref.current.style.display);
@@ -145,7 +152,8 @@ const AddNewBoard = () =>{
                   maxHeight:"6em",
                   width:"100%"
               }}>
-                {(columnState) && columnState.map((ele,i)=>{
+                {(columnState) && columnState.map((ele,i,arr)=>{
+                  console.log(arr);
                   return(
                     <Grid sx={{
                       width:"100%"
@@ -156,12 +164,13 @@ const AddNewBoard = () =>{
                       }} direction="row" container>
                         <Grid sx={{
                           width:"90%",
-                          border:"1px solid",
+                          border:"1px solid lightgrey",
                           padding:"5px",
-                          borderRadius:"25px"
+                          borderRadius:"10px"
                         }} item>{ele}</Grid>
-                        <Grid sx={{
-                          padding:"5px"
+                        <Grid onClick={()=>CancelColumnHandler(i)} sx={{
+                          padding:"5px",
+                          cursor:"pointer"
                         }} item>X</Grid>
                       </Grid>
                     </Grid>
