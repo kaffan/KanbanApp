@@ -3,6 +3,7 @@ import { Fragment, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import { toggleDisplay } from "../../Reducers/AddNewBoardB";
 import { useDispatch, useSelector } from "react-redux";
+import { AddANewBoard } from "../../Reducers/Boards";
 
 const AddNewBoard = () =>{
   const state = useSelector((state)=>state.AddNewBoardB);
@@ -12,6 +13,19 @@ const AddNewBoard = () =>{
   const ref = useRef(null);
   const ref2 = useRef(null);
   console.log(state);
+  const addBoardHandler = () =>{
+    const name = document.getElementById("N").value;
+    if(name!=''){
+      const payload = {
+        name:name,
+        columns: columnState.map((ele)=>({columnName:ele,columnTasks:[]}))
+      }
+      Dispatch(AddANewBoard(payload));
+      document.getElementById('N').value='';
+      SetColumnState([]);
+      Dispatch(toggleDisplay());
+    }
+  }
   const columnHandler = () =>{
     if(ref2.current.value!==''){
       console.log(ref2.current.value);
@@ -196,7 +210,7 @@ const AddNewBoard = () =>{
               margin:"5px",
               padding:"5px"
           }}>
-            <Button sx={{
+            <Button onClick={addBoardHandler} sx={{
               width:"100%",
               fontWeight:"600",
               textTransform:"capitalize",
