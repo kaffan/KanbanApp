@@ -3,26 +3,27 @@ import { Grid } from "@mui/material";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewBoardB";
+import { toggleClick } from "../../Reducers/Boards";
 
 const StyledDiv = styled('div')({
     fontFamily: `'Plus Jakarta Sans', sans-serif`,
     width:"100%",
     height:"48px",
-    color:"#979797",
     position:"relative"
 });
 const InnerDiv = styled('div',{
     shouldForwardProp:(prop)=>prop
-})({
-    backgroundColor:"white",
+})(({ Element })=>({
+    backgroundColor:(Element.clicked) ? "rgb(99, 95, 199)" : "white",
     borderRadius:"0px 100px 100px 0px",
     position:"relative",
     height:"100%",
+    color:(Element.clicked) ? "white" :"#979797",
     '&:hover':{
         backgroundColor:"rgb(244, 247, 253)",
         color:"#635FC7"
     }
-});
+}));
 
 const SpanEle = styled('div')(({obj="inherit", size="inherit"})=>({
     paddingLeft:"11%",
@@ -36,6 +37,9 @@ const SpanEle = styled('div')(({obj="inherit", size="inherit"})=>({
     // bottom: "70%"
 }));
 
+const clickHandler = (e) =>{
+    e.currentTarget.style.backgroundColor = ""
+}
 const SideColumn = () =>{
     const Dispatch = useDispatch();
     const state = useSelector((state)=>state.Boards);
@@ -60,12 +64,14 @@ const SideColumn = () =>{
                     {console.log(state)}
                     {(state) && state.map((ele,i)=>(
                         <Grid item key={i}
-                        // onClick={()=>Dispatch(toggleDisplay('none'))}
+                        onClick={()=>{
+                            Dispatch(toggleClick(ele.name));
+                        }}
                         style={{
                             cursor:"pointer"
                         }}>
                             <StyledDiv>
-                                <InnerDiv>
+                                <InnerDiv Element={ele}>
                                     <SpanEle ><img src="assets/icon-board.svg" /> &nbsp;&nbsp; {ele.name}</SpanEle>
                                 </InnerDiv>
                             </StyledDiv>
@@ -77,7 +83,7 @@ const SideColumn = () =>{
                         cursor:"pointer"
                     }}>
                         <StyledDiv>
-                            <InnerDiv>
+                            <InnerDiv Element={{clicked:false}}>
                                 <SpanEle ><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
                             </InnerDiv>
                         </StyledDiv>

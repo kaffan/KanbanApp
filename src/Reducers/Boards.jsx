@@ -12,10 +12,21 @@ const Boards = createSlice({
         DeleteABoard(state,action){
             state = state.filter((ele)=>ele.name!=action.payload);
             return state;
+        },
+        toggleClick(state,action){
+            state.map((ele)=>{
+                if(ele.name==action.payload){
+                    ele.clicked = true;
+                }
+                else{
+                    ele.clicked = false;
+                }
+            });
+            return state;
         }
     }
 });
 
-export const { AddANewBoard, DeleteABoard } = Boards.actions;
+export const { AddANewBoard, DeleteABoard, toggleClick } = Boards.actions;
 
 export default Boards.reducer;

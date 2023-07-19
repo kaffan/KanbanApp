@@ -18,7 +18,8 @@ const AddNewBoard = () =>{
     if(name!=''){
       const payload = {
         name:name,
-        columns: columnState.map((ele)=>({columnName:ele,columnTasks:[]}))
+        columns: columnState.map((ele)=>({columnName:ele,columnTasks:[]})),
+        clicked:false,
       }
       Dispatch(AddANewBoard(payload));
       document.getElementById('N').value='';
