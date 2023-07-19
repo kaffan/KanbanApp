@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Header from "../Header/Header";
 import { useSelector } from "react-redux";
-import NoColumns from "../Columns/NoCloumns";
+import NoColumns from "../Columns/NoColumns";
 import ColumnDisplay from "../Columns/ColumnDisplay";
 
 const DisplayBoards = () =>{
