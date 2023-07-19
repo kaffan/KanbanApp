@@ -7,6 +7,7 @@ import { Grid } from "@mui/material";
 import ShowSideBar from "../SideBar/ShowSideBar";
 import WholeBar from "../SideBar/WholeBar";
 import { useSelector } from "react-redux";
+import Board from "../Boards/Board";
 // import Header from "../Header/Header";
 
 const MainPage = () =>{
@@ -42,7 +43,7 @@ const MainPage = () =>{
                             width: (state) ? "79%" :"100%",
                             position: "relative"
                         }}>
-                            <NoBoard></NoBoard>
+                            <Board></Board>
                             {!state && <ShowSideBar></ShowSideBar>}
                         </Grid>
                     </Grid>
