@@ -8,8 +8,8 @@ const ShowSideBar = () =>{
     return(
         <Fragment>
             <div style={{
-                position:"relative",
-                top:"70%",
+                position:"absolute",
+                top:"85%",
                 height:"48px",
                 width:"56px",
                 // '&:hover':{
