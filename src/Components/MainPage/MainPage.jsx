@@ -41,7 +41,11 @@ const MainPage = () =>{
                         }
                         <Grid item sx={{
                             width: (state) ? "79%" :"100%",
-                            position: "relative"
+                            position: "relative",
+                            overflowX:"scroll",
+                            '&::-webkit-scrollbar': {
+                                width: '0'
+                              }
                         }}>
                             <Board></Board>
                             {!state && <ShowSideBar></ShowSideBar>}
