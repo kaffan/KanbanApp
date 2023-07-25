@@ -151,7 +151,7 @@ const AddNewBoard = () =>{
                   padding:"10px",
                   margin:"10px 0",
                   width:"90%",
-                  // border:"0.6px",
+                  border:"solid 0.6px",
                   borderColor:"#FCE9F1"
                 }}
               />

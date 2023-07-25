@@ -1,85 +1,65 @@
 import { Button, Grid } from "@mui/material";
 import { Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleDisplay } from "../../Reducers/AddNewTask";
 
-const NewTask = () => {
-    const displayState = useSelector((state)=>state.AddNewTask);
-    const Dispatch = useDispatch();
-    const clickHandler = () =>{
-        Dispatch(toggleDisplay("display"));
-    }
-    return (
+const EditBoard = () =>{
+    return(
         <Fragment>
             <div style={{
                 position: "absolute",
                 width: "100%",
                 height: "100vh",
-                zIndex: "3",
-                backgroundColor: "rgba(0,0,0,0.6)",
-                backdropFilter: "blur(1px)",
-                overflowY:"scroll",
-                display:displayState
-            }} onClick={clickHandler}>
-                <Grid container direction="column" onClick={(e)=>e.stopPropagation()} spacing={1} sx={{
+                zIndex:"3",
+                backgroundColor:"rgba(0,0,0,0.6)",
+                backdropFilter:"blur(1px)",
+            }}>
+                <Grid container sx={{
                     position: "absolute",
-                    left: "35%",
+                    left: "30%",
+                    top: "25%",
                     zIndex: "1",
-                    margin: "15px",
-                    padding: "15px",
+                    margin: "20px",
+                    padding: "20px",
                     width: "35%",
-                    height: "fit-content",
+                    height:"fit-content",
                     backdropFilter: "blur(5px)",
                     backgroundColor: "rgba(255, 255, 255, 1)",
                     textAlign: "left",
                 }}>
                     <Grid item sx={{
-                        fontWeight: "700"
+                        margin:"3px",
+                        padding:"3px"
                     }}>
-                        <span>Add New Task</span>
-                    </Grid>
-                    <Grid item>
                         <label style={{
-                            padding: "5px 0",
-                            margin: "5px 0",
-                            color: "lightgray",
-                            fontWeight: "700"
-                        }}>Title</label><br />
-                        <input type="text" placeholder="e.g. Take coffee break" style={{
-                            padding: "10px",
-                            margin: "10px 0",
-                            width: "90%",
-                            border: "solid 0.6px",
-                            borderColor: "lightgrey",
-                            borderRadius: "7px"
-                        }}></input>
-                    </Grid>
-                    <Grid item>
-                        <label style={{
-                            padding: "5px 0",
-                            margin: "5px 0",
-                            color: "lightgray",
-                            fontWeight: "700"
-                        }}>Description</label><br />
-                        <textarea cols="80" rows="1" placeholder="e.g. it's always good to take a break. This 15 mins break will recharge the batteries a little.... " style={{
-                            padding: "10px",
-                            margin: "10px 0",
-                            width: "90%",
-                            height: "60px",
-                            border: "solid 0.6px",
-                            borderColor: "lightgrey",
-                            borderRadius: "7px"
-                        }}></textarea>
+                            fontSize:"20px",
+                            fontWeight:"700"
+                        }}>Edit Board</label>
                     </Grid>
                     <Grid item sx={{
-                        height:"fit-content"
+                        margin:"5px",
+                        padding:"5px"
                     }}>
                         <label style={{
-                            padding: "5px 0",
-                            margin: "5px 0",
-                            color: "lightgray",
-                            fontWeight: "700"
-                        }}>Subtasks</label>
+                            padding:"5px 0",
+                            margin:"5px 0",
+                            color:"lightgray",
+                            fontWeight:"700"
+                        }}>Board Name</label><br />
+                        <input type="text" readOnly style={{
+                            padding:"10px",
+                            margin:"10px 0",
+                            width:"90%",
+                            borderRadius:"7px",
+                            border:"solid 0.6px",
+                            borderColor:"#FCE9F1"
+                        }}>Element</input>
+                    </Grid>
+                    <Grid item>
+                        <label style={{
+                            padding:"5px 0",
+                            margin:"5px 0",
+                            color:"lightgray",
+                            fontWeight:"700"
+                        }}>Board Columns</label>
                         <Grid container direction="column" sx={{
                             flexWrap:"nowrap",
                             overflowY:"scroll",
@@ -170,7 +150,9 @@ const NewTask = () => {
                                     }} item>X</Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>                         
+                        </Grid>
+                    </Grid>
+                    <Grid item>
                         <Button sx={{
                             width: "95%",
                             fontWeight: "600",
@@ -178,38 +160,20 @@ const NewTask = () => {
                             backgroundColor: "#FCE9F1",
                             borderRadius: "50px",
                             marginTop:"15px"
-                        }}>+ Add New Subtask</Button>
-                    </Grid>
-                    <Grid item>
-                        <label style={{
-                            padding: "5px 0",
-                            margin: "5px 0",
-                            color: "lightgray",
-                            fontWeight: "700"
-                        }}>Status</label><br />
-                        <select name="status" id="" disabled="disabled" style={{
-                            padding: "10px",
-                            margin: "10px 0",
-                            width: "95%",
-                            border: "solid 0.6px",
-                            borderColor: "lightgrey",
-                            borderRadius: "7px"
-                        }}>
-                            <option value="Todo">To Do</option>
-                        </select>
+                        }}>+ Add New Column</Button>
                     </Grid>
                     <Grid item>
                         <Button sx={{
-                            width: "95%",
-                            fontWeight: "600",
-                            textTransform: "capitalize",
-                            backgroundColor: "#4942E4",
-                            borderRadius: "50px",
-                            color: "white",
-                            ":hover": {
-                                color: "#1976d2"
+                            width:"100%",
+                            fontWeight:"600",
+                            textTransform:"capitalize",
+                            backgroundColor:"#4942E4",
+                            borderRadius:"50px",
+                            color:"white",
+                            ":hover":{
+                                color:"#1976d2"
                             }
-                        }}>Create New Task</Button>
+                        }}>Save Changes</Button>
                     </Grid>
                 </Grid>
             </div>
@@ -217,4 +181,4 @@ const NewTask = () => {
     );
 }
 
-export default NewTask;
+export default EditBoard;
