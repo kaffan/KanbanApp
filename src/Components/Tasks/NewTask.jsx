@@ -11,6 +11,8 @@ const NewTask = () => {
                 zIndex: "3",
                 backgroundColor: "rgba(0,0,0,0.6)",
                 backdropFilter: "blur(1px)",
+                overflowY:"scroll",
+                
             }}>
                 <Grid container direction="column" spacing={1} sx={{
                     position: "absolute",
@@ -62,36 +64,113 @@ const NewTask = () => {
                             borderRadius: "7px"
                         }}></textarea>
                     </Grid>
-                    <Grid item>
+                    <Grid item sx={{
+                        height:"fit-content"
+                    }}>
                         <label style={{
                             padding: "5px 0",
                             margin: "5px 0",
                             color: "lightgray",
                             fontWeight: "700"
                         }}>Subtasks</label>
-                        <Grid container>
-                            <Grid sx={{
-                                margin: "5px 0",
-                                width: "100%"
-                            }} direction="row" container>
+                        <Grid container direction="column" sx={{
+                            flexWrap:"nowrap",
+                            overflowY:"scroll",
+                            height:"20vh"
+                        }}>
+                            <Grid item>
                                 <Grid sx={{
-                                    width: "90%",
-                                    border: "1px solid lightgrey",
-                                    padding: "5px",
-                                    borderRadius: "10px"
-                                }} item>Element</Grid>
-                                <Grid sx={{
-                                    padding: "5px",
-                                    cursor: "pointer"
-                                }} item>X</Grid>
+                                    margin: "5px 0",
+                                    width: "100%",
+                                }} direction="row" container>
+                                    <Grid sx={{
+                                        width: "90%",
+                                        border: "1px solid lightgrey",
+                                        padding: "5px",
+                                        borderRadius: "10px"
+                                    }} item>Element</Grid>
+                                    <Grid sx={{
+                                        padding: "5px",
+                                        cursor: "pointer"
+                                    }} item>X</Grid>
+                                </Grid>
                             </Grid>
-                        </Grid>
+                            <Grid item>
+                                <Grid sx={{
+                                    margin: "5px 0",
+                                    width: "100%",
+                                }} direction="row" container>
+                                    <Grid sx={{
+                                        width: "90%",
+                                        border: "1px solid lightgrey",
+                                        padding: "5px",
+                                        borderRadius: "10px"
+                                    }} item>Element</Grid>
+                                    <Grid sx={{
+                                        padding: "5px",
+                                        cursor: "pointer"
+                                    }} item>X</Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid item>
+                                <Grid sx={{
+                                    margin: "5px 0",
+                                    width: "100%",
+                                }} direction="row" container>
+                                    <Grid sx={{
+                                        width: "90%",
+                                        border: "1px solid lightgrey",
+                                        padding: "5px",
+                                        borderRadius: "10px"
+                                    }} item>Element</Grid>
+                                    <Grid sx={{
+                                        padding: "5px",
+                                        cursor: "pointer"
+                                    }} item>X</Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid item>
+                                <Grid sx={{
+                                    margin: "5px 0",
+                                    width: "100%",
+                                }} direction="row" container>
+                                    <Grid sx={{
+                                        width: "90%",
+                                        border: "1px solid lightgrey",
+                                        padding: "5px",
+                                        borderRadius: "10px"
+                                    }} item>Element</Grid>
+                                    <Grid sx={{
+                                        padding: "5px",
+                                        cursor: "pointer"
+                                    }} item>X</Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid item>
+                                <Grid sx={{
+                                    margin: "5px 0",
+                                    width: "100%",
+                                }} direction="row" container>
+                                    <Grid sx={{
+                                        width: "90%",
+                                        border: "1px solid lightgrey",
+                                        padding: "5px",
+                                        borderRadius: "10px"
+                                    }} item>Element</Grid>
+                                    <Grid sx={{
+                                        padding: "5px",
+                                        cursor: "pointer"
+                                    }} item>X</Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>                         
                         <Button sx={{
                             width: "95%",
                             fontWeight: "600",
                             textTransform: "capitalize",
                             backgroundColor: "#FCE9F1",
-                            borderRadius: "50px"
+                            borderRadius: "50px",
+                            marginTop:"15px"
                         }}>+ Add New Subtask</Button>
                     </Grid>
                     <Grid item>
