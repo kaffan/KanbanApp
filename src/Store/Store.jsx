@@ -3,6 +3,7 @@ import ShowSideBar from '../Reducers/ShowSideBar';
 import AddNewBoardB from '../Reducers/AddNewBoardB';
 import Boards from '../Reducers/Boards';
 import AddNewTask from '../Reducers/AddNewTask';
+import EditBoard from '../Reducers/EditBoard';
 
 export const Store = configureStore({
     reducer:{
@@ -10,5 +11,6 @@ export const Store = configureStore({
         AddNewBoardB: AddNewBoardB,
         Boards:Boards,
         AddNewTask:AddNewTask,
+        EditBoard:EditBoard,
     }
 });

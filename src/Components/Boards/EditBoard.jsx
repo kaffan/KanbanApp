@@ -1,21 +1,27 @@
 import { Button, Grid } from "@mui/material";
 import { Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDisplay } from "../../Reducers/EditBoard";
 
 const EditBoard = () =>{
+    const displayState = useSelector((state)=>state.EditBoard);
+    const Dispatch = useDispatch();
     return(
         <Fragment>
             <div style={{
                 position: "absolute",
+                display:displayState,
                 width: "100%",
                 height: "100vh",
                 zIndex:"3",
                 backgroundColor:"rgba(0,0,0,0.6)",
                 backdropFilter:"blur(1px)",
-            }}>
+                // overflowY:"scroll"
+            }} onClick={()=>Dispatch(toggleDisplay("none"))}>
                 <Grid container sx={{
                     position: "absolute",
                     left: "30%",
-                    top: "25%",
+                    top: "10%",
                     zIndex: "1",
                     margin: "20px",
                     padding: "20px",
@@ -24,7 +30,7 @@ const EditBoard = () =>{
                     backdropFilter: "blur(5px)",
                     backgroundColor: "rgba(255, 255, 255, 1)",
                     textAlign: "left",
-                }}>
+                }} direction="column" onClick={(e)=>e.stopPropagation()}>
                     <Grid item sx={{
                         margin:"3px",
                         padding:"3px"
@@ -51,7 +57,7 @@ const EditBoard = () =>{
                             borderRadius:"7px",
                             border:"solid 0.6px",
                             borderColor:"#FCE9F1"
-                        }}>Element</input>
+                        }}></input>
                     </Grid>
                     <Grid item>
                         <label style={{
@@ -164,7 +170,7 @@ const EditBoard = () =>{
                     </Grid>
                     <Grid item>
                         <Button sx={{
-                            width:"100%",
+                            width:"95%",
                             fontWeight:"600",
                             textTransform:"capitalize",
                             backgroundColor:"#4942E4",
