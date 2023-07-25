@@ -1,11 +1,18 @@
 import { Button, Grid } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/EditBoard";
 
 const EditBoard = () =>{
     const displayState = useSelector((state)=>state.EditBoard);
     const Dispatch = useDispatch();
+    const state = useSelector((state)=>state);
+    console.log(state);
+    const CurrentBoard = useSelector((state)=>state.CurrentBoard);
+    console.log(CurrentBoard);
+    const BoardName = (CurrentBoard!=={}) ? CurrentBoard.name : "";
+    const [ columns, SetColumns ] = useState(()=>(CurrentBoard!=={}) ? CurrentBoard.columns : []);
+    console.log(BoardName)
     return(
         <Fragment>
             <div style={{
@@ -50,7 +57,7 @@ const EditBoard = () =>{
                             color:"lightgray",
                             fontWeight:"700"
                         }}>Board Name</label><br />
-                        <input type="text" readOnly style={{
+                        <input type="text" readOnly value={BoardName} style={{
                             padding:"10px",
                             margin:"10px 0",
                             width:"90%",
@@ -71,7 +78,9 @@ const EditBoard = () =>{
                             overflowY:"scroll",
                             height:"20vh"
                         }}>
-                            <Grid item>
+                            
+                            {(columns!=[]) && columns.map((ele,i)=>(
+                            <Grid item key={i}>
                                 <Grid sx={{
                                     margin: "5px 0",
                                     width: "100%",
@@ -81,81 +90,14 @@ const EditBoard = () =>{
                                         border: "1px solid lightgrey",
                                         padding: "5px",
                                         borderRadius: "10px"
-                                    }} item>Element</Grid>
+                                    }} item>{ele.columnName}</Grid>
                                     <Grid sx={{
                                         padding: "5px",
                                         cursor: "pointer"
                                     }} item>X</Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item>
-                                <Grid sx={{
-                                    margin: "5px 0",
-                                    width: "100%",
-                                }} direction="row" container>
-                                    <Grid sx={{
-                                        width: "90%",
-                                        border: "1px solid lightgrey",
-                                        padding: "5px",
-                                        borderRadius: "10px"
-                                    }} item>Element</Grid>
-                                    <Grid sx={{
-                                        padding: "5px",
-                                        cursor: "pointer"
-                                    }} item>X</Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item>
-                                <Grid sx={{
-                                    margin: "5px 0",
-                                    width: "100%",
-                                }} direction="row" container>
-                                    <Grid sx={{
-                                        width: "90%",
-                                        border: "1px solid lightgrey",
-                                        padding: "5px",
-                                        borderRadius: "10px"
-                                    }} item>Element</Grid>
-                                    <Grid sx={{
-                                        padding: "5px",
-                                        cursor: "pointer"
-                                    }} item>X</Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item>
-                                <Grid sx={{
-                                    margin: "5px 0",
-                                    width: "100%",
-                                }} direction="row" container>
-                                    <Grid sx={{
-                                        width: "90%",
-                                        border: "1px solid lightgrey",
-                                        padding: "5px",
-                                        borderRadius: "10px"
-                                    }} item>Element</Grid>
-                                    <Grid sx={{
-                                        padding: "5px",
-                                        cursor: "pointer"
-                                    }} item>X</Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item>
-                                <Grid sx={{
-                                    margin: "5px 0",
-                                    width: "100%",
-                                }} direction="row" container>
-                                    <Grid sx={{
-                                        width: "90%",
-                                        border: "1px solid lightgrey",
-                                        padding: "5px",
-                                        borderRadius: "10px"
-                                    }} item>Element</Grid>
-                                    <Grid sx={{
-                                        padding: "5px",
-                                        cursor: "pointer"
-                                    }} item>X</Grid>
-                                </Grid>
-                            </Grid>
+                            )) }
                         </Grid>
                     </Grid>
                     <Grid item>

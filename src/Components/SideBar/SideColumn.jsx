@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewBoardB";
 import { toggleClick } from "../../Reducers/Boards";
+import { updateCurrentBoard } from "../../Reducers/CurrentBoard";
 
 const StyledDiv = styled('div')({
     fontFamily: `'Plus Jakarta Sans', sans-serif`,
@@ -66,6 +67,7 @@ const SideColumn = () =>{
                         <Grid item key={i}
                         onClick={()=>{
                             Dispatch(toggleClick(ele.name));
+                            Dispatch(updateCurrentBoard(ele));
                         }}
                         style={{
                             cursor:"pointer"
