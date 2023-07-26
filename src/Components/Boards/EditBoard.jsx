@@ -1,22 +1,40 @@
 import { Button, Grid } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/EditBoard";
+import { UpdateBoard } from "../../Reducers/Boards";
+import { updateCurrentBoard } from "../../Reducers/CurrentBoard";
 
 const EditBoard = () =>{
-    const displayState = useSelector((state)=>state.EditBoard);
+    const displayState1 = useSelector((state)=>state.EditBoard);
     const Dispatch = useDispatch();
+    const ref = useRef();
     const state = useSelector((state)=>state);
     console.log(state);
     const CurrentBoard = useSelector((state)=>state.CurrentBoard);
     const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
     const [ columns, SetColumns ] = useState(()=>(Object.keys(CurrentBoard).length) ? CurrentBoard.columns : []);
-    console.log(BoardName)
+    console.log(BoardName);
+    const [ displayState2, SetDisplayState2 ] = useState("none");
+    const EditBoardHandler = () =>{
+        Dispatch(UpdateBoard({...CurrentBoard, columns}));
+        Dispatch(updateCurrentBoard({...CurrentBoard, columns}));
+        Dispatch(toggleDisplay("none"));
+    }
+    const addHandler = () =>{
+        const NewColumn = {columnName:ref.current.value,columnTasks:[]};
+        ref.current.value = "";
+        SetColumns((prevState)=>[...prevState, NewColumn]);
+        closeHandler();
+    }
+    const closeHandler = ()=>{
+        SetDisplayState2("none");
+    }
     return(
         <Fragment>
             <div style={{
                 position: "absolute",
-                display:displayState,
+                display:displayState1,
                 width: "100%",
                 height: "100vh",
                 zIndex:"3",
@@ -30,7 +48,7 @@ const EditBoard = () =>{
                     top:"33%",
                     left:"34%",
                     backgroundColor:"lightgrey",
-                    display: "none",
+                    display: displayState2,
                     width: "30%",
                     padding:"30px"
                 }} onClick={(e)=>e.stopPropagation()}>
@@ -44,7 +62,7 @@ const EditBoard = () =>{
                     <Grid item sx={{
                         padding:"10px"
                     }}>
-                        <input type="text" style={{
+                        <input type="text" ref={ref} style={{
                             padding:"7px 10px",
                             border:"solid 1px grey",
                             borderRadius:"7px",
@@ -54,8 +72,8 @@ const EditBoard = () =>{
                     <Grid sx={{
                         padding:"10px"
                     }}>
-                        <Button sx={{margin:"0 2px"}} variant="contained">Click To Add</Button>
-                        <Button sx={{margin:"0 2px"}} variant="outlined" color="warning">Close</Button>
+                        <Button onClick={addHandler} sx={{margin:"0 2px"}} variant="contained">Click To Add</Button>
+                        <Button onClick={closeHandler} sx={{margin:"0 2px"}} variant="outlined" color="warning">Close</Button>
                     </Grid>
                 </Grid>
                 <Grid container sx={{
@@ -141,7 +159,7 @@ const EditBoard = () =>{
                             backgroundColor: "#FCE9F1",
                             borderRadius: "50px",
                             marginTop:"15px"
-                        }}>+ Add New Column</Button>
+                        }} onClick={()=>SetDisplayState2("block")}>+ Add New Column</Button>
                     </Grid>
                     <Grid item>
                         <Button sx={{
@@ -154,7 +172,7 @@ const EditBoard = () =>{
                             ":hover":{
                                 color:"#1976d2"
                             }
-                        }}>Save Changes</Button>
+                        }} onClick={EditBoardHandler}>Save Changes</Button>
                     </Grid>
                 </Grid>
             </div>

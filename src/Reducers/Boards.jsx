@@ -13,6 +13,11 @@ const Boards = createSlice({
             state = state.filter((ele)=>ele.name!=action.payload);
             return state;
         },
+        UpdateBoard(state,action){
+            const tempArr = state.filter((ele)=>ele.name!==action.payload.name);
+            state = [...tempArr, action.payload];
+            return state;
+        },
         toggleClick(state,action){
             state.map((ele)=>{
                 if(ele.name==action.payload){
@@ -27,6 +32,6 @@ const Boards = createSlice({
     }
 });
 
-export const { AddANewBoard, DeleteABoard, toggleClick } = Boards.actions;
+export const { AddANewBoard, DeleteABoard, UpdateBoard, toggleClick } = Boards.actions;
 
 export default Boards.reducer;
