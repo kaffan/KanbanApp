@@ -9,9 +9,8 @@ const EditBoard = () =>{
     const state = useSelector((state)=>state);
     console.log(state);
     const CurrentBoard = useSelector((state)=>state.CurrentBoard);
-    console.log(CurrentBoard);
-    const BoardName = (CurrentBoard!=={}) ? CurrentBoard.name : "";
-    const [ columns, SetColumns ] = useState(()=>(CurrentBoard!=={}) ? CurrentBoard.columns : []);
+    const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
+    const [ columns, SetColumns ] = useState(()=>(Object.keys(CurrentBoard).length) ? CurrentBoard.columns : []);
     console.log(BoardName)
     return(
         <Fragment>
@@ -25,6 +24,40 @@ const EditBoard = () =>{
                 backdropFilter:"blur(1px)",
                 // overflowY:"scroll"
             }} onClick={()=>Dispatch(toggleDisplay("none"))}>
+                <Grid container direction="column" sx={{
+                    position:"relative",
+                    zIndex:"4",
+                    top:"33%",
+                    left:"34%",
+                    backgroundColor:"lightgrey",
+                    display: "none",
+                    width: "30%",
+                    padding:"30px"
+                }} onClick={(e)=>e.stopPropagation()}>
+                    <Grid item sx={{
+                        padding:"10px"
+                    }}>
+                        <label style={{
+                            fontWeight:"700"
+                        }}>New Column Name</label>
+                    </Grid>
+                    <Grid item sx={{
+                        padding:"10px"
+                    }}>
+                        <input type="text" style={{
+                            padding:"7px 10px",
+                            border:"solid 1px grey",
+                            borderRadius:"7px",
+                            width:"80%"
+                        }}></input>
+                    </Grid>
+                    <Grid sx={{
+                        padding:"10px"
+                    }}>
+                        <Button sx={{margin:"0 2px"}} variant="contained">Click To Add</Button>
+                        <Button sx={{margin:"0 2px"}} variant="outlined" color="warning">Close</Button>
+                    </Grid>
+                </Grid>
                 <Grid container sx={{
                     position: "absolute",
                     left: "30%",
@@ -76,7 +109,7 @@ const EditBoard = () =>{
                         <Grid container direction="column" sx={{
                             flexWrap:"nowrap",
                             overflowY:"scroll",
-                            height:"20vh"
+                            height:"10vh"
                         }}>
                             
                             {(columns!=[]) && columns.map((ele,i)=>(
