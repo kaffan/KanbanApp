@@ -14,11 +14,12 @@ const EditBoard = () =>{
     const CurrentBoard = useSelector((state)=>state.CurrentBoard);
     const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
     const [ columns, SetColumns ] = useState(()=>(Object.keys(CurrentBoard).length) ? CurrentBoard.columns : []);
-    console.log(BoardName);
+    console.log(CurrentBoard);
     const [ displayState2, SetDisplayState2 ] = useState("none");
     const EditBoardHandler = () =>{
         Dispatch(UpdateBoard({...CurrentBoard, columns}));
         Dispatch(updateCurrentBoard({...CurrentBoard, columns}));
+        SetColumns([]);
         Dispatch(toggleDisplay("none"));
     }
     const addHandler = () =>{

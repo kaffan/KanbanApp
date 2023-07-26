@@ -44,7 +44,7 @@ const MainPage = () =>{
                             position: "relative",
                             overflowX:"scroll",
                             '&::-webkit-scrollbar': {
-                                width: '0'
+                                width: '0.6em'
                               }
                         }}>
                             <Board></Board>

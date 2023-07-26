@@ -22,7 +22,8 @@ const Column = ({col}) =>{
                 }}>
                     {col.columnName}
                 </Grid>
-                <Grid item sx={{
+                {(col.tasks) && col.tasks.map((ele,i)=>(
+                <Grid key={i} item sx={{
                     padding:"15px 10px",
                     backgroundColor:"white",
                     width:"100%",
@@ -32,27 +33,9 @@ const Column = ({col}) =>{
                     fontWeight:"700",
                     margin:"10px 0"
                 }}> 
-                  Affan
-                </Grid>
-                <Grid item sx={{
-                    padding:"15px 10px",
-                    backgroundColor:"white",
-                    width:"100%",
-                    boxShadow:"2px 2px 10px lightgrey",
-                    borderRadius:"7px",
-                    fontSize:"17px",
-                    fontWeight:"700",
-                    margin:"10px 0"
-                }}> 
-                  Affan
-                </Grid>
-                
+                  {ele.title}
+                </Grid>))}
             </Grid>
-            {/* {col.columnTasks.map((ele,i)=>(
-                <Grid key={i} item>
-                    {ele.task}
-                </Grid>
-            ))} */}
         </Fragment>
     );
 }

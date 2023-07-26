@@ -1,11 +1,13 @@
 import { Button, Grid } from "@mui/material";
 import { Fragment } from "react";
 import Logo from "../SideBar/Logo";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDisplay } from "../../Reducers/AddNewTask";
 
 const Header = () =>{
     const Boards = useSelector((state)=>state.Boards);
     const Board = (Boards!==[]) ? Boards.find((ele)=>ele.clicked) : false;
+    const Dispatch = useDispatch();
     console.log(Board);
     return(
         <Fragment>
@@ -48,6 +50,7 @@ const Header = () =>{
                             width:"15%"
                         }}>
                             <Button disabled={(Board.columns.length===0) ? true : false}
+                            onClick={()=>Dispatch(toggleDisplay("none"))}
                             variant="contained"
                             sx={{
                             textTransform:"none",
