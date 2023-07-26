@@ -1,29 +1,37 @@
 import { Grid } from "@mui/material";
 import { Fragment } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Column from "./Column";
+import { toggleDisplay } from "../../Reducers/EditBoard";
 
 const ColumnDisplay = ({columns}) =>{
     // const boardColumns = useSelector((state)=>state.Boards.columns);
+    const Dispatch = useDispatch();
     return(
         <Fragment>
             <Grid container direction="row" spacing={2} sx={{
                 height:"85%",
+                weight:"100%",
                 padding:"15px",
+                flexWrap:"nowrap",
+                overflowX:"scroll",
+                '&::-webkit-scrollbar':{
+                    width:"0.6em"
+                }
             }}>
                 {columns.map((ele,i)=>(
                     <Grid sx={{
-                        width:"22%",
+                        minWidth:"22%",
                         height:"100%"
                     }} key={i} item>
                         <Column col={ele}></Column>
                     </Grid>
                 ))}
                 <Grid item sx={{
-                    width:"15%"
+                    minWidth:"15%"
                 }}>
                 <Grid container direction="column" sx={{
-                    width:"100%",
+                    minWidth:"100%",
                     height:"100%"
                 }}>
                     <Grid item sx={{
@@ -31,10 +39,11 @@ const ColumnDisplay = ({columns}) =>{
                     }}>
 
                     </Grid>
-                    <Grid item sx={{
+                    <Grid onClick={()=>Dispatch(toggleDisplay("block"))} item sx={{
                         position:"relative",
                         backgroundColor:"#E9EFFA",
                         height:"80%",
+                        
                     }}>
                         <span style={{
                             position:"relative",

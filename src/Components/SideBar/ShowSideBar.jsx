@@ -12,6 +12,7 @@ const ShowSideBar = () =>{
                 top:"85%",
                 height:"48px",
                 width:"56px",
+                zIndex:"2"
                 // '&:hover':{
                 //     cursor:"pointer"
                 // }
