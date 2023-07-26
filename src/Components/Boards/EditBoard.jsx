@@ -1,12 +1,14 @@
 import { Button, Grid } from "@mui/material";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/EditBoard";
 import { UpdateBoard } from "../../Reducers/Boards";
 import { updateCurrentBoard } from "../../Reducers/CurrentBoard";
 
 const EditBoard = () =>{
-    const displayState1 = useSelector((state)=>state.EditBoard);
+    // useEffect(()=>{
+    //     SetColumns(()=>(Object.keys(CurrentBoard).length) ? CurrentBoard.columns : []);
+    // },[]);
     const Dispatch = useDispatch();
     const ref = useRef();
     const state = useSelector((state)=>state);
@@ -14,13 +16,12 @@ const EditBoard = () =>{
     const CurrentBoard = useSelector((state)=>state.CurrentBoard);
     const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
     const [ columns, SetColumns ] = useState(()=>(Object.keys(CurrentBoard).length) ? CurrentBoard.columns : []);
-    console.log(CurrentBoard);
+    console.log(CurrentBoard.columns);
     const [ displayState2, SetDisplayState2 ] = useState("none");
     const EditBoardHandler = () =>{
         Dispatch(UpdateBoard({...CurrentBoard, columns}));
         Dispatch(updateCurrentBoard({...CurrentBoard, columns}));
-        SetColumns([]);
-        Dispatch(toggleDisplay("none"));
+        Dispatch(toggleDisplay());
     }
     const addHandler = () =>{
         const NewColumn = {columnName:ref.current.value,columnTasks:[]};
@@ -35,14 +36,14 @@ const EditBoard = () =>{
         <Fragment>
             <div style={{
                 position: "absolute",
-                display:displayState1,
+                display:"block",
                 width: "100%",
                 height: "100vh",
                 zIndex:"3",
                 backgroundColor:"rgba(0,0,0,0.6)",
                 backdropFilter:"blur(1px)",
                 // overflowY:"scroll"
-            }} onClick={()=>Dispatch(toggleDisplay("none"))}>
+            }} onClick={()=>Dispatch(toggleDisplay())}>
                 <Grid container direction="column" sx={{
                     position:"relative",
                     zIndex:"4",

@@ -28,7 +28,7 @@ const NoColumns = () =>{
                     &nbsp;
                 </Grid>
                 <Grid item>
-                    <Button onClick={()=>Dispatch(toggleDisplay("block"))} variant="contained" sx={{
+                    <Button onClick={()=>Dispatch(toggleDisplay())} variant="contained" sx={{
                         textTransform:"none",
                         borderRadius:"50px",
                         backgroundColor:"#635FC7",
