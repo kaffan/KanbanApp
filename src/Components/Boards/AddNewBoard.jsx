@@ -20,10 +20,10 @@ const AddNewBoard = () =>{
       const payload = {
         name:name,
         columns: columnState.map((ele)=>({columnName:ele,columnTasks:[]})),
-        clicked:true,
+        // clicked:true,
       }
       Dispatch(AddANewBoard(payload));
-      Dispatch(toggleClick(name));
+      // Dispatch(toggleClick(name));
       Dispatch(updateCurrentBoard(payload));
       document.getElementById('N').value='';
       SetColumnState([]);

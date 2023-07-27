@@ -6,7 +6,8 @@ import ColumnDisplay from "../Columns/ColumnDisplay";
 
 const DisplayBoards = () =>{
     const state = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
-    console.log(state);
+    const globalState = useSelector((state)=>state);
+    console.log(globalState);
     return(
         <Fragment>
             {/* <Header Element={state}></Header> */}

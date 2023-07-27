@@ -18,17 +18,17 @@ const Boards = createSlice({
             state = [...tempArr, action.payload];
             return state;
         },
-        toggleClick(state,action){
-            state.map((ele)=>{
-                if(ele.name==action.payload){
-                    ele.clicked = true;
-                }
-                else{
-                    ele.clicked = false;
-                }
-            });
-            return state;
-        }
+        // toggleClick(state,action){
+        //     state.map((ele)=>{
+        //         if(ele.name==action.payload){
+        //             ele.clicked = true;
+        //         }
+        //         else{
+        //             ele.clicked = false;
+        //         }
+        //     });
+        //     return state;
+        // }
     }
 });
 
