@@ -15,11 +15,11 @@ const StyledDiv = styled('div')({
 const InnerDiv = styled('div',{
     shouldForwardProp:(prop)=>prop
 })(({ Element })=>({
-    backgroundColor:(Element.clicked) ? "rgb(99, 95, 199)" : "white",
+    backgroundColor:(Element) ? "rgb(99, 95, 199)" : "white",
     borderRadius:"0px 100px 100px 0px",
     position:"relative",
     height:"100%",
-    color:(Element.clicked) ? "white" :"#979797",
+    color:(Element) ? "white" :"#979797",
     '&:hover':{
         backgroundColor:"rgb(244, 247, 253)",
         color:"#635FC7"
@@ -44,6 +44,7 @@ const clickHandler = (e) =>{
 const SideColumn = () =>{
     const Dispatch = useDispatch();
     const state = useSelector((state)=>state.Boards);
+    const CurrentBoard = useSelector((state)=>state.CurrentBoard);
     return(
         <Fragment>
                 <Grid container direction="column" sx={{
@@ -66,14 +67,14 @@ const SideColumn = () =>{
                     {(state) && state.map((ele,i)=>(
                         <Grid item key={i}
                         onClick={()=>{
-                            Dispatch(toggleClick(ele.name));
+                            // Dispatch(toggleClick(ele.name));
                             Dispatch(updateCurrentBoard(ele));
                         }}
                         style={{
                             cursor:"pointer"
                         }}>
                             <StyledDiv>
-                                <InnerDiv Element={ele}>
+                                <InnerDiv Element={ele.name==CurrentBoard.name}>
                                     <SpanEle ><img src="assets/icon-board.svg" /> &nbsp;&nbsp; {ele.name}</SpanEle>
                                 </InnerDiv>
                             </StyledDiv>
@@ -85,7 +86,7 @@ const SideColumn = () =>{
                         cursor:"pointer"
                     }}>
                         <StyledDiv>
-                            <InnerDiv Element={{clicked:false}}>
+                            <InnerDiv Element={false}>
                                 <SpanEle ><img src="assets/icon-board.svg" /> &nbsp;&nbsp; +Create New Board</SpanEle>
                             </InnerDiv>
                         </StyledDiv>

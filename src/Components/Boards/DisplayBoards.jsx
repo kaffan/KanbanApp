@@ -3,9 +3,10 @@ import Header from "../Header/Header";
 import { useSelector } from "react-redux";
 import NoColumns from "../Columns/NoColumns";
 import ColumnDisplay from "../Columns/ColumnDisplay";
+import CurrentBoard from "../../Reducers/CurrentBoard";
 
 const DisplayBoards = () =>{
-    const state = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
+    const state = useSelector((state)=>state.CurrentBoard);
     const globalState = useSelector((state)=>state);
     console.log(globalState);
     return(

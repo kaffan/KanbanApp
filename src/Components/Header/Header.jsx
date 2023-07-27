@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewTask";
 
 const Header = () =>{
-    const Boards = useSelector((state)=>state.Boards);
-    const Board = (Boards!==[]) ? Boards.find((ele)=>ele.clicked) : false;
+    const Board = useSelector((state)=>state.CurrentBoard);
     const Dispatch = useDispatch();
     console.log(Board);
     return(
@@ -28,7 +27,7 @@ const Header = () =>{
                     width:"79%",
                     backgroundColor:"white"
                 }}>
-                    {Board &&
+                    {Object.keys(Board).length &&
                     <Grid container sx={{
                         position:"relative",
                         left:"0",
