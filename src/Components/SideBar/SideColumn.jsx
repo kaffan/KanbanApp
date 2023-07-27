@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewBoardB";
-import { toggleClick } from "../../Reducers/Boards";
+import { UpdateBoard, toggleClick } from "../../Reducers/Boards";
 import { updateCurrentBoard } from "../../Reducers/CurrentBoard";
 
 const StyledDiv = styled('div')({
@@ -64,17 +64,18 @@ const SideColumn = () =>{
                         </StyledDiv>
                     </Grid>
                     {console.log(state)}
-                    {(state) && state.map((ele,i)=>(
+                    {(state) && state.map((ele,i,arr)=>(
                         <Grid item key={i}
                         onClick={()=>{
                             // Dispatch(toggleClick(ele.name));
+                            // Dispatch(UpdateBoard(ele));
                             Dispatch(updateCurrentBoard(ele));
                         }}
                         style={{
                             cursor:"pointer"
                         }}>
                             <StyledDiv>
-                                <InnerDiv Element={ele.name==CurrentBoard.name}>
+                                <InnerDiv Element={ele.clicked}>
                                     <SpanEle ><img src="assets/icon-board.svg" /> &nbsp;&nbsp; {ele.name}</SpanEle>
                                 </InnerDiv>
                             </StyledDiv>
