@@ -8,9 +8,6 @@ const CurrentBoard = createSlice({
     initialState:initialState,
     reducers:{
         updateCurrentBoard(state,action){
-            const Dispatch = useDispatch();
-            action.payload.clicked = true;
-            Dispatch(UpdateBoard(action.payload));
             state = action.payload;
             return state;
         }

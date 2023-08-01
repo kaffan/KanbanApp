@@ -22,9 +22,12 @@ const AddNewBoard = () =>{
         columns: columnState.map((ele)=>({columnName:ele,columnTasks:[]})),
         clicked:true,
       }
-      Dispatch(AddANewBoard(payload));
       // Dispatch(toggleClick(name));
-      Dispatch(updateCurrentBoard(payload));
+      Dispatch(updateCurrentBoard(function(){
+        Dispatch(AddANewBoard(payload));
+        Dispatch(toggleClick(name));
+        return payload
+      }()));
       document.getElementById('N').value='';
       SetColumnState([]);
       Dispatch(toggleDisplay());
