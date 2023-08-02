@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewTask";
 
 const NewTask = () => {
-    const displayState = useSelector((state)=>state.AddNewTask);
     const Dispatch = useDispatch();
-    const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clciked));
+    const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
+    const state = useSelector((state)=>state)
+    console.log(CurrentBoard)
     const clickHandler = () =>{
-        Dispatch(toggleDisplay("display"));
+        Dispatch(toggleDisplay());
     }
     return (
         <Fragment>
@@ -20,7 +21,7 @@ const NewTask = () => {
                 backgroundColor: "rgba(0,0,0,0.6)",
                 backdropFilter: "blur(1px)",
                 overflowY:"scroll",
-                display:displayState
+                display:"block"
             }} onClick={clickHandler}>
                 <Grid container direction="column" onClick={(e)=>e.stopPropagation()} spacing={1} sx={{
                     position: "absolute",
@@ -120,7 +121,7 @@ const NewTask = () => {
                             color: "lightgray",
                             fontWeight: "700"
                         }}>Status</label><br />
-                        <select name="status" id="" disabled="disabled" style={{
+                        <select name="status" id=""  style={{
                             padding: "10px",
                             margin: "10px 0",
                             width: "95%",
@@ -128,9 +129,9 @@ const NewTask = () => {
                             borderColor: "lightgrey",
                             borderRadius: "7px"
                         }}>
-                            {/* {CurrentBoard.columns.map((ele)=>(
-                                <option value={ele.columName}>{ele.columName}</option>
-                            ))} */}
+                            {CurrentBoard.columns.map((ele)=>(
+                                <option value={ele.columnName}>{ele.columnName}</option>
+                            ))}
                         </select>
                     </Grid>
                     <Grid item>
