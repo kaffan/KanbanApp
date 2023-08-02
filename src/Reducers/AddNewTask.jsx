@@ -6,7 +6,7 @@ const AddNewTask = createSlice({
     name:"AddNewTask",
     initialState:initialState,
     reducers:{
-        toggleDisplay(state, action){
+        toggleDisplay(state){
             state = !state;  
             return state;
         }

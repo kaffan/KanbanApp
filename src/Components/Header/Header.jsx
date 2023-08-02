@@ -49,7 +49,7 @@ const Header = () =>{
                             width:"15%"
                         }}>
                             <Button disabled={(Board.columns.length===0) ? true : false}
-                            onClick={()=>Dispatch(toggleDisplay("none"))}
+                            onClick={()=>Dispatch(toggleDisplay())}
                             variant="contained"
                             sx={{
                             textTransform:"none",

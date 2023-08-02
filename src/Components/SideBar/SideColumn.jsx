@@ -86,7 +86,7 @@ const SideColumn = () =>{
                         </Grid>
                     ))}
                     <Grid item
-                    onClick={()=>Dispatch(toggleDisplay('none'))}
+                    onClick={()=>Dispatch(toggleDisplay())}
                     style={{
                         cursor:"pointer"
                     }}>

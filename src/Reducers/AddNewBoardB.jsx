@@ -5,7 +5,7 @@ const AddNewBoardB = createSlice({
     name:'AddNewBoard',
     initialState,
     reducers:{
-        toggleDisplay(state, action){
+        toggleDisplay(state){
            state = !state;
            return state;
         }
