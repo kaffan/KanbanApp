@@ -13,14 +13,17 @@ const EditBoard = () =>{
     const ref = useRef();
     const state = useSelector((state)=>state);
     console.log(state);
-    const CurrentBoard = useSelector((state)=>state.CurrentBoard);
+    const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
     const [ columns, SetColumns ] = useState(()=>(Object.keys(CurrentBoard).length) ? CurrentBoard.columns : []);
     console.log(CurrentBoard);
     const [ displayState2, SetDisplayState2 ] = useState("none");
     const EditBoardHandler = () =>{
-        Dispatch(UpdateBoard({...CurrentBoard, columns}));
-        Dispatch(updateCurrentBoard({...CurrentBoard, columns}));
+        Dispatch(UpdateBoard(function(){
+            Dispatch(updateCurrentBoard({...CurrentBoard, columns}));
+            return {...CurrentBoard, columns};
+        }()));
+        // Dispatch(updateCurrentBoard({...CurrentBoard, columns}));
         Dispatch(toggleDisplay());
     }
     const addHandler = () =>{

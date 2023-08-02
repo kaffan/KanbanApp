@@ -6,6 +6,7 @@ import { toggleDisplay } from "../../Reducers/AddNewTask";
 const NewTask = () => {
     const displayState = useSelector((state)=>state.AddNewTask);
     const Dispatch = useDispatch();
+    const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clciked));
     const clickHandler = () =>{
         Dispatch(toggleDisplay("display"));
     }
@@ -102,74 +103,6 @@ const NewTask = () => {
                                     }} item>X</Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item>
-                                <Grid sx={{
-                                    margin: "5px 0",
-                                    width: "100%",
-                                }} direction="row" container>
-                                    <Grid sx={{
-                                        width: "90%",
-                                        border: "1px solid lightgrey",
-                                        padding: "5px",
-                                        borderRadius: "10px"
-                                    }} item>Element</Grid>
-                                    <Grid sx={{
-                                        padding: "5px",
-                                        cursor: "pointer"
-                                    }} item>X</Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item>
-                                <Grid sx={{
-                                    margin: "5px 0",
-                                    width: "100%",
-                                }} direction="row" container>
-                                    <Grid sx={{
-                                        width: "90%",
-                                        border: "1px solid lightgrey",
-                                        padding: "5px",
-                                        borderRadius: "10px"
-                                    }} item>Element</Grid>
-                                    <Grid sx={{
-                                        padding: "5px",
-                                        cursor: "pointer"
-                                    }} item>X</Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item>
-                                <Grid sx={{
-                                    margin: "5px 0",
-                                    width: "100%",
-                                }} direction="row" container>
-                                    <Grid sx={{
-                                        width: "90%",
-                                        border: "1px solid lightgrey",
-                                        padding: "5px",
-                                        borderRadius: "10px"
-                                    }} item>Element</Grid>
-                                    <Grid sx={{
-                                        padding: "5px",
-                                        cursor: "pointer"
-                                    }} item>X</Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item>
-                                <Grid sx={{
-                                    margin: "5px 0",
-                                    width: "100%",
-                                }} direction="row" container>
-                                    <Grid sx={{
-                                        width: "90%",
-                                        border: "1px solid lightgrey",
-                                        padding: "5px",
-                                        borderRadius: "10px"
-                                    }} item>Element</Grid>
-                                    <Grid sx={{
-                                        padding: "5px",
-                                        cursor: "pointer"
-                                    }} item>X</Grid>
-                                </Grid>
-                            </Grid>
                         </Grid>                         
                         <Button sx={{
                             width: "95%",
@@ -195,7 +128,9 @@ const NewTask = () => {
                             borderColor: "lightgrey",
                             borderRadius: "7px"
                         }}>
-                            <option value="Todo">To Do</option>
+                            {/* {CurrentBoard.columns.map((ele)=>(
+                                <option value={ele.columName}>{ele.columName}</option>
+                            ))} */}
                         </select>
                     </Grid>
                     <Grid item>

@@ -11,10 +11,12 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const displayState1 = useSelector((state)=>state.EditBoard);
+  const displayState2 = useSelector((state)=>state.AddNewBoardB);
+  const displayState3 = useSelector((state)=>state.AddNewTask);
   return (
     <div className="App">
-      {ReactDOM.createPortal(<AddNewBoard></AddNewBoard>, document.getElementById('portal1'))}
-      {ReactDOM.createPortal(<NewTask></NewTask>, document.getElementById('portal2'))}
+      {ReactDOM.createPortal((displayState2) ? <AddNewBoard></AddNewBoard> : <></>, document.getElementById('portal1'))}
+      {ReactDOM.createPortal((displayState3) ? <NewTask></NewTask>:<></>, document.getElementById('portal2'))}
       {ReactDOM.createPortal((displayState1) ? <EditBoard></EditBoard> : <></>, document.getElementById("portal3"))}
       <MainPage></MainPage>
     </div>

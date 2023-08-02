@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = 'none'
+const initialState = false;
 const AddNewBoardB = createSlice({
     name:'AddNewBoard',
     initialState,
     reducers:{
         toggleDisplay(state, action){
-           state = (action.payload==='none') ? 'block' : 'none';
+           state = !state;
            return state;
         }
     }

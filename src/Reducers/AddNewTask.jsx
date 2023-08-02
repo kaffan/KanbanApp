@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Fragment } from "react";
 
-const initialState = "none";
+const initialState = false;
 const AddNewTask = createSlice({
     name:"AddNewTask",
     initialState:initialState,
     reducers:{
         toggleDisplay(state, action){
-            state = (action.payload==="none") ? "block" : "none";  
+            state = !state;  
             return state;
         }
     }
