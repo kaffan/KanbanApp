@@ -8,7 +8,7 @@ import CurrentBoard from "../../Reducers/CurrentBoard";
 const DisplayBoards = () =>{
     const state = useSelector((state)=>state.CurrentBoard);
     const globalState = useSelector((state)=>state);
-    console.log(globalState);
+    console.log(state);
     return(
         <Fragment>
             {/* <Header Element={state}></Header> */}

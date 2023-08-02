@@ -69,11 +69,11 @@ const SideColumn = () =>{
                         onClick={()=>{
                             // Dispatch(toggleClick(ele.name));
                             // Dispatch(UpdateBoard(ele));
-                            Dispatch(updateCurrentBoard(()=>{
+                            Dispatch(updateCurrentBoard(function(){
                                 Dispatch(toggleClick(ele.name));
-                                Dispatch(UpdateBoard(ele));
+                                // Dispatch(UpdateBoard(ele));
                                 return ele;
-                            }));
+                            }()));
                         }}
                         style={{
                             cursor:"pointer"
