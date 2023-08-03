@@ -27,7 +27,7 @@ const Header = () =>{
                     width:"79%",
                     backgroundColor:"white"
                 }}>
-                    {Object.keys(Board).length &&
+                    {Object.keys(Board).length!==0 &&
                     <Grid container sx={{
                         position:"relative",
                         left:"0",
