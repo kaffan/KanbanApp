@@ -1,5 +1,5 @@
 import { Button, Grid } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewTask";
 
@@ -7,12 +7,51 @@ const NewTask = () => {
     const Dispatch = useDispatch();
     const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const state = useSelector((state)=>state)
-    console.log(CurrentBoard)
+    console.log(CurrentBoard);
+    const [ taskObj, SetTaskObj ] = useState({});
+    const [ display, SetDisplay ] = useState("none");
+    const taskHandler = () =>{
+
+    }
     const clickHandler = () =>{
         Dispatch(toggleDisplay());
     }
     return (
         <Fragment>
+            <Grid container direction="column"
+                sx={{
+                    position:"absolute",
+                    display:display,
+                    backgroundColor:"lightgrey",
+                    top:"35%",
+                    left:"36%",
+                    zIndex:"4",
+                    width:"34%",
+                    padding:"20px"
+                }}>
+                    <Grid item sx={{
+                        padding:"5px",
+                        fontWeight:"700"
+                    }}>
+                        <label>Sub Task Title</label>
+                    </Grid>
+                    <Grid item sx={{
+                        padding:"5px"
+                    }}>
+                        <input type="text" style={{
+                            width:"80%",
+                            padding:"4px 4px",
+                            borderRadius:"7px",
+                            border:"solid 0.5px pink"
+                        }}></input>
+                    </Grid>
+                    <Grid item sx={{
+                        padding:"5px"
+                    }}>
+                        <Button sx={{margin:"0 3px"}} variant="contained">Add Subtask</Button>
+                        <Button sx={{margin:"0 3px"}} color="warning" variant="outlined">Close</Button>
+                    </Grid>
+                </Grid>
             <div style={{
                 position: "absolute",
                 width: "100%",
@@ -135,7 +174,7 @@ const NewTask = () => {
                         </select>
                     </Grid>
                     <Grid item>
-                        <Button sx={{
+                        <Button onClick={taskHandler} sx={{
                             width: "95%",
                             fontWeight: "600",
                             textTransform: "capitalize",

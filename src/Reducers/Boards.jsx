@@ -15,7 +15,7 @@ const Boards = createSlice({
         },
         UpdateBoard(state,action){
             const tempArr = state.filter((ele)=>ele.name!==action.payload.name);
-            state = [...tempArr, action.payload];
+            state = [action.payload, ...tempArr];
             return state;
         },
         toggleClick(state,action){
