@@ -2,18 +2,35 @@ import { Button, Grid } from "@mui/material";
 import { Fragment, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewTask";
+import { UpdateBoard } from "../../Reducers/Boards";
 
 const NewTask = () => {
     const Dispatch = useDispatch();
-    const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
+    // const CurrentBoard = {...useSelector((state)=>state.Boards.find((ele)=>ele.clicked))}; we need to create deep copy of currentboard
+    const CurrentBoard = JSON.parse(JSON.stringify(useSelector((state)=>state.Boards.find((ele)=>ele.clicked))));
     const state = useSelector((state)=>state)
     console.log(CurrentBoard);
     const [ taskObj, SetTaskObj ] = useState({});
     const [ display, SetDisplay ] = useState("none");
     const [ subTasks, SetSubTasks ] = useState([]);
-    const ref1 = useRef()
+    const ref1 = useRef();
+    const ref2 = useRef();
+    const ref3 = useRef();
+    const ref4 = useRef();
     const taskHandler = () =>{
-
+        const NewTask = {
+            name:ref2.current.value,
+            description:ref3.current.value,
+            subtasks:[...subTasks],
+        };
+        const columnName = ref4.current.value;
+        CurrentBoard.columns.map((ele)=>{
+            if(ele.columnName===columnName){
+                ele.columnTasks = [ ...ele.columnTasks, NewTask ]
+            }
+        });
+        Dispatch(UpdateBoard(CurrentBoard));
+        clickHandler();
     }
     const subtaskHanlder = () =>{
         const val = ref1.current.value;
@@ -97,7 +114,7 @@ const NewTask = () => {
                             color: "lightgray",
                             fontWeight: "700"
                         }}>Title</label><br />
-                        <input type="text" placeholder="e.g. Take coffee break" style={{
+                        <input ref={ref2} type="text" placeholder="e.g. Take coffee break" style={{
                             padding: "10px",
                             margin: "10px 0",
                             width: "90%",
@@ -113,7 +130,7 @@ const NewTask = () => {
                             color: "lightgray",
                             fontWeight: "700"
                         }}>Description</label><br />
-                        <textarea cols="80" rows="1" placeholder="e.g. it's always good to take a break. This 15 mins break will recharge the batteries a little.... " style={{
+                        <textarea ref={ref3} cols="80" rows="1" placeholder="e.g. it's always good to take a break. This 15 mins break will recharge the batteries a little.... " style={{
                             padding: "10px",
                             margin: "10px 0",
                             width: "90%",
@@ -190,7 +207,7 @@ const NewTask = () => {
                             color: "lightgray",
                             fontWeight: "700"
                         }}>Status</label><br />
-                        <select name="status" id=""  style={{
+                        <select ref={ref4} name="status" id=""  style={{
                             padding: "10px",
                             margin: "10px 0",
                             width: "95%",

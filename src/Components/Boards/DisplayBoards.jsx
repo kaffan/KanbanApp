@@ -6,13 +6,13 @@ import ColumnDisplay from "../Columns/ColumnDisplay";
 import CurrentBoard from "../../Reducers/CurrentBoard";
 
 const DisplayBoards = () =>{
-    const state = useSelector((state)=>state.CurrentBoard);
+    const state = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const globalState = useSelector((state)=>state);
     console.log(globalState);
     return(
         <Fragment>
             {/* <Header Element={state}></Header> */}
-            {(state.columns.length!==0) ? <ColumnDisplay columns={state.columns}></ColumnDisplay> : <NoColumns></NoColumns>}
+            {state.columns && (state.columns.length!==0) ? <ColumnDisplay columns={state.columns}></ColumnDisplay> : <NoColumns></NoColumns>}
         </Fragment>
     )
 }

@@ -22,7 +22,7 @@ const Column = ({col}) =>{
                 }}>
                     {col.columnName}
                 </Grid>
-                {(col.tasks) && col.tasks.map((ele,i)=>(
+                {(col.columnTasks) && col.columnTasks.map((ele,i)=>(
                 <Grid key={i} item sx={{
                     padding:"15px 10px",
                     backgroundColor:"white",
@@ -33,7 +33,7 @@ const Column = ({col}) =>{
                     fontWeight:"700",
                     margin:"10px 0"
                 }}> 
-                  {ele.title}
+                  {ele.name}
                 </Grid>))}
             </Grid>
         </Fragment>
