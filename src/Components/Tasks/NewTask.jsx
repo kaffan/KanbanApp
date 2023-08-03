@@ -1,5 +1,5 @@
 import { Button, Grid } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewTask";
 
@@ -10,8 +10,19 @@ const NewTask = () => {
     console.log(CurrentBoard);
     const [ taskObj, SetTaskObj ] = useState({});
     const [ display, SetDisplay ] = useState("none");
+    const [ subTasks, SetSubTasks ] = useState([]);
+    const ref1 = useRef()
     const taskHandler = () =>{
 
+    }
+    const subtaskHanlder = () =>{
+        const val = ref1.current.value;
+        SetSubTasks((prevState)=>[...prevState, val]);
+        ref1.current.value = "";
+        closeSubTask();
+    }
+    const closeSubTask = () =>{
+        SetDisplay("none");
     }
     const clickHandler = () =>{
         Dispatch(toggleDisplay());
@@ -38,7 +49,7 @@ const NewTask = () => {
                     <Grid item sx={{
                         padding:"5px"
                     }}>
-                        <input type="text" style={{
+                        <input ref={ref1} type="text" style={{
                             width:"80%",
                             padding:"4px 4px",
                             borderRadius:"7px",
@@ -48,8 +59,8 @@ const NewTask = () => {
                     <Grid item sx={{
                         padding:"5px"
                     }}>
-                        <Button sx={{margin:"0 3px"}} variant="contained">Add Subtask</Button>
-                        <Button sx={{margin:"0 3px"}} color="warning" variant="outlined">Close</Button>
+                        <Button sx={{margin:"0 3px"}} variant="contained" onClick={subtaskHanlder}>Add Subtask</Button>
+                        <Button sx={{margin:"0 3px"}} color="warning" onClick={closeSubTask} variant="outlined">Close</Button>
                     </Grid>
                 </Grid>
             <div style={{
@@ -126,7 +137,26 @@ const NewTask = () => {
                             overflowY:"scroll",
                             height:"20vh"
                         }}>
-                            <Grid item>
+                            {subTasks.length!=0 && subTasks.map((ele)=>(
+                                <Grid item>
+                                <Grid sx={{
+                                    margin: "5px 0",
+                                    width: "100%",
+                                }} direction="row" container>
+                                    <Grid sx={{
+                                        width: "90%",
+                                        border: "1px solid lightgrey",
+                                        padding: "5px",
+                                        borderRadius: "10px"
+                                    }} item>{ele}</Grid>
+                                    <Grid sx={{
+                                        padding: "5px",
+                                        cursor: "pointer"
+                                    }} item>X</Grid>
+                                </Grid>
+                            </Grid>
+                            ))}
+                            {/* <Grid item>
                                 <Grid sx={{
                                     margin: "5px 0",
                                     width: "100%",
@@ -142,7 +172,7 @@ const NewTask = () => {
                                         cursor: "pointer"
                                     }} item>X</Grid>
                                 </Grid>
-                            </Grid>
+                            </Grid> */}
                         </Grid>                         
                         <Button sx={{
                             width: "95%",
@@ -151,7 +181,7 @@ const NewTask = () => {
                             backgroundColor: "#FCE9F1",
                             borderRadius: "50px",
                             marginTop:"15px"
-                        }}>+ Add New Subtask</Button>
+                        }} onClick={()=>SetDisplay("block")}>+ Add New Subtask</Button>
                     </Grid>
                     <Grid item>
                         <label style={{
