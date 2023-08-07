@@ -18,7 +18,7 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
             }}>
             <Grid container direction="column" onClick={(e)=>e.stopPropagation()} sx={{
                 position: "absolute",
-                left: "35%",
+                left: "33%",
                 zIndex: "1",
                 margin: "15px",
                 padding: "25px",
@@ -33,12 +33,16 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
                 }}>
                     <Grid container sx={{
                         padding: "5px 0",
-                        margin: "5px 0",
+                        // margin: "5px 0",
                         color: "#000000",
-                        fontWeight: "700"
+                        fontWeight: "700",
+                        width:"100%"
                     }}>
                         <Grid item sx={{
-                            width:"80%"
+                            width:"80%",
+                            wordWrap:"break-word",
+                            fontSize:"20px",
+                            lineHeight:"15px"
                         }}>
                             {Task.name}
                         </Grid>
@@ -66,7 +70,7 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
                             margin: "5px 0",
                         }}>
                             <label style={{
-                                color:"mediumgrey",
+                                color:"rgb(130, 143, 163)",
                                 fontWeight:"700"
                             }}>Subtasks</label>
                         </Grid>
@@ -86,10 +90,19 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
                         ))}
                     </Grid>
                 </Grid>
-                <Grid item>
-                    <select>
+                <Grid item sx={{
+                    padding: "5px 0",
+                    margin: "5px 0",
+                }}>
+                    <label style={{
+                        color:"rgb(130, 143, 163)",
+                        fontSize:"16px",
+                        lineHeight: "20px",
+                        fontWeight:"500"
+                    }}>Current Status</label><br />
+                    <select style={{width:"100%", border:"solid 2px lightgrey", padding:"7px 5px", borderRadius:"7px"}}>
                     {AllColumns.length!==0 && AllColumns.map((Ele)=>(
-                        <option selected={(Ele.columnName===col.columnName) ? 'selected' : ""} value={Ele.columnName}>{Ele.columnName}</option>
+                        <option disabled selected={(Ele.columnName===col.columnName) ? 'selected' : ""} value={Ele.columnName}>{Ele.columnName}</option>
                     ))}
                     </select>
                 </Grid>
