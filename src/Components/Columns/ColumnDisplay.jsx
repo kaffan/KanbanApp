@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Column from "./Column";
 import { toggleDisplay } from "../../Reducers/EditBoard";
 
-const ColumnDisplay = ({columns}) =>{
+const ColumnDisplay = ({columns, CurrentBoard}) =>{
     // const boardColumns = useSelector((state)=>state.Boards.columns);
     const Dispatch = useDispatch();
     return(
@@ -24,7 +24,7 @@ const ColumnDisplay = ({columns}) =>{
                         minWidth:"22%",
                         height:"100%"
                     }} key={i} item>
-                        <Column col={ele}></Column>
+                        <Column CurrentBoard={CurrentBoard} col={ele}></Column>
                     </Grid>
                 ))}
                 <Grid item sx={{

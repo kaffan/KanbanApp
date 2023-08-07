@@ -1,8 +1,11 @@
 import { Grid } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import ViewTask from "../Tasks/ViewTask";
+import { createPortal } from "react-dom";
 
-const Column = ({col}) =>{
-    console.log(col)
+const Column = ({col,CurrentBoard}) =>{
+    console.log(col);
+    const [ taskToggle, SetTaskToggle ] = useState(false);
     return(
         <Fragment>
             <Grid container direction="column"
@@ -23,7 +26,7 @@ const Column = ({col}) =>{
                     {col.columnName}
                 </Grid>
                 {(col.columnTasks) && col.columnTasks.map((ele,i)=>(
-                <Grid key={i} item sx={{
+                <Grid key={i} item onClick={()=>SetTaskToggle((state)=>!state)} sx={{
                     padding:"15px 10px",
                     backgroundColor:"white",
                     width:"100%",
@@ -33,6 +36,7 @@ const Column = ({col}) =>{
                     fontWeight:"700",
                     margin:"10px 0"
                 }}> 
+                  {taskToggle && createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={ele} col={col}></ViewTask>, document.getElementById("portal4"))}
                   {ele.name}
                 </Grid>))}
             </Grid>
