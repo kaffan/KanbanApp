@@ -3,7 +3,7 @@ import { Fragment } from "react";
 
 const ViewTask = ({col, Task, CurrentBoard}) =>{
     const AllColumns = CurrentBoard.columns.filter((col)=>col.columnName);
-    console.log(CurrentBoard);
+    console.log(Task);
     return(
         <Fragment>
             <div style={{
@@ -16,10 +16,27 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
                 overflowY:"scroll",
                 display:"block"
             }}>
-            <Grid container>
-                <Grid item>
-                    <Grid container>
-                        <Grid item>
+            <Grid container direction="column" onClick={(e)=>e.stopPropagation()} sx={{
+                position: "absolute",
+                left: "35%",
+                zIndex: "1",
+                margin: "15px",
+                padding: "25px",
+                width: "35%",
+                height: "fit-content",
+                backdropFilter: "blur(5px)",
+                backgroundColor: "rgba(255, 255, 255, 1)",
+                textAlign: "left",
+            }}>
+                <Grid item sx={{
+                    fontWeight: "700"
+                }}>
+                    <Grid container sx={{
+
+                    }}>
+                        <Grid item sx={{
+                            width:"80%"
+                        }}>
                             {Task.name}
                         </Grid>
                         <Grid item>
