@@ -12,7 +12,7 @@ const DisplayBoards = () =>{
     return(
         <Fragment>
             {/* <Header Element={state}></Header> */}
-            {state.columns && (state.columns.length!==0) ? <ColumnDisplay columns={state.columns}></ColumnDisplay> : <NoColumns></NoColumns>}
+            {state.columns && (state.columns.length!==0) ? <ColumnDisplay CurrentBoard={state} columns={state.columns}></ColumnDisplay> : <NoColumns></NoColumns>}
         </Fragment>
     )
 }
