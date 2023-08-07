@@ -1,6 +1,45 @@
 import { Grid } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
+function BasicMenu() {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
+    return (
+      <div>
+        <Button
+          id="basic-button"
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClick}
+        >
+          <img src="assets/icon-vertical-ellipsis.svg"></img>
+        </Button>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+          <MenuItem onClick={handleClose}>Edit Task</MenuItem>
+          <MenuItem sx={{color:"red"}} onClick={handleClose}>Delete Task</MenuItem>
+        </Menu>
+      </div>
+    );
+  }
 const ViewTask = ({col, Task, CurrentBoard}) =>{
     const AllColumns = CurrentBoard.columns.filter((col)=>col.columnName);
     console.log(Task);
@@ -20,6 +59,7 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
                 position: "absolute",
                 left: "33%",
                 zIndex: "1",
+                top:"20%",
                 margin: "15px",
                 padding: "25px",
                 width: "30%",
@@ -36,7 +76,8 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
                         // margin: "5px 0",
                         color: "#000000",
                         fontWeight: "700",
-                        width:"100%"
+                        width:"100%",
+                        alignItems:"center"
                     }}>
                         <Grid item sx={{
                             width:"80%",
@@ -47,7 +88,7 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
                             {Task.name}
                         </Grid>
                         <Grid item>
-
+                            <BasicMenu></BasicMenu>
                         </Grid>
                     </Grid>
                 </Grid>
