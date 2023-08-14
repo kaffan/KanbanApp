@@ -2,10 +2,12 @@ import { Grid } from "@mui/material";
 import { Fragment, useState } from "react";
 import ViewTask from "../Tasks/ViewTask";
 import { createPortal } from "react-dom";
+import EditTask from "../Tasks/EditTask";
 
 const Column = ({col,CurrentBoard}) =>{
     console.log(col);
     const [ taskToggle, SetTaskToggle ] = useState(false);
+    const [ editTask, SetEditTask ] = useState(false);
     return(
         <Fragment>
             <Grid container direction="column"
@@ -15,6 +17,7 @@ const Column = ({col,CurrentBoard}) =>{
                 overflowY:"scroll",
                 overflowX:"hidden",
                 flexWrap:"nowrap",
+                cursor:"pointer",
                 '&::-webkit-scrollbar': {
                     width: '0'
                   },
@@ -37,6 +40,7 @@ const Column = ({col,CurrentBoard}) =>{
                     margin:"10px 0"
                 }}> 
                   {taskToggle && createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={ele} col={col}></ViewTask>, document.getElementById("portal4"))}
+                  {/* {editTask && createPortal(<EditTask setTask={SetTaskToggle} editTask={SetEditTask} CurrentBoard={CurrentBoard} Task={ele} col={col}></EditTask>, document.getElementById("portal5"))}; */}
                   {ele.name}
                 </Grid>))}
             </Grid>

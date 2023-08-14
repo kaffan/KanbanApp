@@ -22,6 +22,7 @@ const NewTask = () => {
             name:ref2.current.value,
             description:ref3.current.value,
             subtasks:[...subTasks],
+            visible:false
         };
         const columnName = ref4.current.value;
         CurrentBoard.columns.map((ele)=>{

@@ -13,7 +13,10 @@ function BasicMenu() {
     const handleClose = () => {
       setAnchorEl(null);
     };
-  
+    const editTaskHandler = () =>{
+        // setTask(false);
+        // editTask(true);
+    }
     return (
       <div>
         <Button
@@ -34,7 +37,7 @@ function BasicMenu() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          <MenuItem onClick={handleClose}>Edit Task</MenuItem>
+          <MenuItem onClick={editTaskHandler}>Edit Task</MenuItem>
           <MenuItem sx={{color:"red"}} onClick={handleClose}>Delete Task</MenuItem>
         </Menu>
       </div>
@@ -88,7 +91,7 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
                             {Task.name}
                         </Grid>
                         <Grid item>
-                            <BasicMenu></BasicMenu>
+                            <BasicMenu  ></BasicMenu>
                         </Grid>
                     </Grid>
                 </Grid>
