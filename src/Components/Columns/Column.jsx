@@ -3,11 +3,15 @@ import { Fragment, useState } from "react";
 import ViewTask from "../Tasks/ViewTask";
 import { createPortal } from "react-dom";
 import EditTask from "../Tasks/EditTask";
+import { toggleVisibility } from "../../Reducers/SetTaskView";
+import { useDispatch, useSelector } from "react-redux";
 
 const Column = ({col,CurrentBoard}) =>{
     console.log(col);
     const [ taskToggle, SetTaskToggle ] = useState(false);
     const [ editTask, SetEditTask ] = useState(false);
+    const Dispatch = useDispatch();
+    const taskState = useSelector((state)=>state.TaskView);
     return(
         <Fragment>
             <Grid container direction="column"
@@ -29,7 +33,7 @@ const Column = ({col,CurrentBoard}) =>{
                     {col.columnName}
                 </Grid>
                 {(col.columnTasks) && col.columnTasks.map((ele,i)=>(
-                <Grid key={i} item onClick={()=>SetTaskToggle((state)=>!state)} sx={{
+                <Grid key={i} item onClick={()=>Dispatch(toggleVisibility(ele))} sx={{
                     padding:"15px 10px",
                     backgroundColor:"white",
                     width:"100%",
@@ -39,7 +43,7 @@ const Column = ({col,CurrentBoard}) =>{
                     fontWeight:"700",
                     margin:"10px 0"
                 }}> 
-                  {taskToggle && createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={ele} col={col}></ViewTask>, document.getElementById("portal4"))}
+                  {taskState && createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={ele} col={col}></ViewTask>, document.getElementById("portal4"))}
                   {/* {editTask && createPortal(<EditTask setTask={SetTaskToggle} editTask={SetEditTask} CurrentBoard={CurrentBoard} Task={ele} col={col}></EditTask>, document.getElementById("portal5"))}; */}
                   {ele.name}
                 </Grid>))}

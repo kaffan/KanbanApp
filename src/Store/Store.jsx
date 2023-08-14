@@ -5,6 +5,7 @@ import Boards from '../Reducers/Boards';
 import AddNewTask from '../Reducers/AddNewTask';
 import EditBoard from '../Reducers/EditBoard';
 import CurrentBoard from '../Reducers/CurrentBoard';
+import SetTaskView from '../Reducers/SetTaskView';
 
 export const Store = configureStore({
     reducer:{
@@ -14,5 +15,6 @@ export const Store = configureStore({
         AddNewTask:AddNewTask,
         EditBoard:EditBoard,
         CurrentBoard:CurrentBoard,
+        TaskView:SetTaskView,
     }
 });

@@ -6,7 +6,8 @@ const SetTaskView = createSlice({
     initialState:initialState,
     reducers:{
         toggleVisibility(state,action){
-            action.payload = !action.payload;
+            action.payload.visible = !action.payload.visible;
+            return state;
         }
     }
 });
