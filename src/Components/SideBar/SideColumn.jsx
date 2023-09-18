@@ -3,8 +3,7 @@ import { Grid } from "@mui/material";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewBoardB";
-import { UpdateBoard, toggleClick } from "../../Reducers/Boards";
-import { updateCurrentBoard } from "../../Reducers/CurrentBoard";
+import { toggleClick } from "../../Reducers/Boards";
 
 const StyledDiv = styled('div')({
     fontFamily: `'Plus Jakarta Sans', sans-serif`,
@@ -44,7 +43,7 @@ const clickHandler = (e) =>{
 const SideColumn = () =>{
     const Dispatch = useDispatch();
     const state = useSelector((state)=>state.Boards);
-    const CurrentBoard = useSelector((state)=>state.CurrentBoard);
+    const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     return(
         <Fragment>
                 <Grid container direction="column" sx={{
@@ -67,13 +66,7 @@ const SideColumn = () =>{
                     {(state) && state.map((ele,i,arr)=>(
                         <Grid item key={i}
                         onClick={()=>{
-                            // Dispatch(toggleClick(ele.name));
-                            // Dispatch(UpdateBoard(ele));
-                            Dispatch(updateCurrentBoard(function(){
                                 Dispatch(toggleClick(ele.name));
-                                // Dispatch(UpdateBoard(ele));
-                                return ele;
-                            }()));
                         }}
                         style={{
                             cursor:"pointer"

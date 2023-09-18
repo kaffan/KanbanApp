@@ -6,6 +6,9 @@ import AddNewTask from '../Reducers/AddNewTask';
 import EditBoard from '../Reducers/EditBoard';
 import SetTaskView from '../Reducers/SetTaskView';
 import Columns from '../Reducers/Columns';
+import { enableMapSet } from 'immer/dist/immer';
+
+enableMapSet();
 
 export const Store = configureStore({
     reducer:{

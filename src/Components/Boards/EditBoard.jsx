@@ -7,9 +7,6 @@ import { UpdateBoard } from "../../Reducers/Boards";
 import { AddColumn } from "../../Reducers/Columns";
 
 const EditBoard = () =>{
-    // useEffect(()=>{
-    //     SetColumns(()=>(Object.keys(CurrentBoard).length) ? CurrentBoard.columns : []);
-    // },[]);
     const Dispatch = useDispatch();
     const ref = useRef();
     const state = useSelector((state)=>state);
@@ -20,16 +17,11 @@ const EditBoard = () =>{
         if(ele.boardName===BoardName)
           return ele;
     })));
-    // const [tasks, setTasks] = useState(()=>(state.Tasks.map((ele)=>{
-    //     if(ele.boardName === BoardName && ele.colName === columns[0].colName)
-    //         return ele;
-    // })));
     console.log(CurrentBoard);
     const [ displayState2, SetDisplayState2 ] = useState("none");
     const EditBoardHandler = () =>{
         const payload = new Set(columns.map((ele)=>ele));
         Dispatch(AddColumn())
-        // Dispatch(updateCurrentBoard({...CurrentBoard, columns}));
         Dispatch(toggleDisplay());
     }
     const addHandler = () =>{
