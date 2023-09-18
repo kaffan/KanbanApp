@@ -4,7 +4,8 @@ import { createPortal } from "react-dom";
 import { toggleDisplay } from "../../Reducers/AddNewBoardB";
 import { useDispatch, useSelector } from "react-redux";
 import { AddANewBoard, toggleClick } from "../../Reducers/Boards";
-import CurrentBoard, { updateCurrentBoard } from "../../Reducers/CurrentBoard";
+// import CurrentBoard, { updateCurrentBoard } from "../../Reducers/CurrentBoard";
+import { AddColumn } from "../../Reducers/Columns";
 
 const AddNewBoard = () =>{
   const state = useSelector((state)=>state.AddNewBoardB);
@@ -19,16 +20,16 @@ const AddNewBoard = () =>{
     if(name!=''){
       const payload = {
         name:name,
-        columns: columnState.map((ele)=>({columnName:ele,columnTasks:[]})),
+        // columns: columnState.map((ele)=>({columnName:ele,columnTasks:[]})),
         clicked:true,
       }
+      const payload2 = columnState.map((ele) => ({ boardName: name, colName: ele }));
       // Dispatch(toggleClick(name));
-      Dispatch(updateCurrentBoard(function(){
+      Dispatch(AddColumn((function () {
         Dispatch(AddANewBoard(payload));
-        Dispatch(toggleClick(name));
-        return payload
-      }()));
-      document.getElementById('N').value='';
+        return payload2;
+      })()));
+      document.getElementById('N').value = '';
       SetColumnState([]);
       Dispatch(toggleDisplay());
     }

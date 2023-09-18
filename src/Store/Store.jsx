@@ -4,17 +4,17 @@ import AddNewBoardB from '../Reducers/AddNewBoardB';
 import Boards from '../Reducers/Boards';
 import AddNewTask from '../Reducers/AddNewTask';
 import EditBoard from '../Reducers/EditBoard';
-import CurrentBoard from '../Reducers/CurrentBoard';
 import SetTaskView from '../Reducers/SetTaskView';
+import Columns from '../Reducers/Columns';
 
 export const Store = configureStore({
     reducer:{
         ShowSideBar:ShowSideBar,
         AddNewBoardB: AddNewBoardB,
         Boards:Boards,
+        Columns:Columns,
         AddNewTask:AddNewTask,
         EditBoard:EditBoard,
-        CurrentBoard:CurrentBoard,
         TaskView:SetTaskView,
     }
 });
