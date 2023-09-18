@@ -3,7 +3,8 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/EditBoard";
 import { UpdateBoard } from "../../Reducers/Boards";
-import { updateCurrentBoard } from "../../Reducers/CurrentBoard";
+// import { updateCurrentBoard } from "../../Reducers/CurrentBoard";
+import { AddColumn } from "../../Reducers/Columns";
 
 const EditBoard = () =>{
     // useEffect(()=>{
@@ -15,19 +16,24 @@ const EditBoard = () =>{
     console.log(state);
     const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
-    const [ columns, SetColumns ] = useState(()=>(Object.keys(CurrentBoard).length) ? CurrentBoard.columns : []);
+    const [ columns, SetColumns ] = useState(()=>([...state.Columns].map((ele)=>{
+        if(ele.boardName===BoardName)
+          return ele;
+    })));
+    // const [tasks, setTasks] = useState(()=>(state.Tasks.map((ele)=>{
+    //     if(ele.boardName === BoardName && ele.colName === columns[0].colName)
+    //         return ele;
+    // })));
     console.log(CurrentBoard);
     const [ displayState2, SetDisplayState2 ] = useState("none");
     const EditBoardHandler = () =>{
-        Dispatch(UpdateBoard(function(){
-            Dispatch(updateCurrentBoard({...CurrentBoard, columns}));
-            return {...CurrentBoard, columns};
-        }()));
+        const payload = new Set(columns.map((ele)=>ele));
+        Dispatch(AddColumn())
         // Dispatch(updateCurrentBoard({...CurrentBoard, columns}));
         Dispatch(toggleDisplay());
     }
     const addHandler = () =>{
-        const NewColumn = {columnName:ref.current.value,columnTasks:[]};
+        const NewColumn = {boardName : BoardName, colName : ref.current.value};
         ref.current.value = "";
         SetColumns((prevState)=>[...prevState, NewColumn]);
         closeHandler();

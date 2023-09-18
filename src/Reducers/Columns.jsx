@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const Columns = createSlice({
     name:"Columns",
-    initialState : [],
+    initialState : new Set(),
     reducers : {
         AddColumn(state,action){
-            state = [...state, action.payload2]
+            state = new Set(...state, ...action.payload);
         }
     }
 });
