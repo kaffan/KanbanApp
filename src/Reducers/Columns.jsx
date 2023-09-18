@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const Columns = createSlice({
-    name:"AddColumns",
+    name:"Columns",
     initialState : [],
     reducers : {
         AddColumn(state,action){
