@@ -4,12 +4,8 @@ import './index.css';
 import { Store } from './Store/Store';
 import { Provider } from 'react-redux';
 import App from './App';
-import { enableMapSet } from 'immer';
-// import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-enableMapSet();
 
 root.render(
   <React.StrictMode>
