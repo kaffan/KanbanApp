@@ -8,8 +8,10 @@ import AddNewBoard from './Components/Boards/AddNewBoard';
 import NewTask from './Components/Tasks/NewTask';
 import EditBoard from './Components/Boards/EditBoard';
 import { useSelector } from 'react-redux';
+// import { enableMapSet } from 'immer';
 
 function App() {
+  // enableMapSet();
   const displayState1 = useSelector((state)=>state.EditBoard);
   const displayState2 = useSelector((state)=>state.AddNewBoardB);
   const displayState3 = useSelector((state)=>state.AddNewTask);

@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleDisplay } from "../../Reducers/AddNewTask";
 
 const Header = () =>{
-    const Board = useSelector((state)=>state.CurrentBoard);
+    const Board = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
+    const state = useSelector((state)=>state);
     const Dispatch = useDispatch();
     console.log(Board);
+    const columns = (Board) ? [...state.Columns].map((ele)=>ele.boardName===Board.name) : undefined;
     return(
         <Fragment>
             <Grid container direction="column" sx={{
@@ -27,7 +29,7 @@ const Header = () =>{
                     width:"79%",
                     backgroundColor:"white"
                 }}>
-                    {Object.keys(Board).length!==0 &&
+                    {Board && Object.keys(Board).length!==0 &&
                     <Grid container sx={{
                         position:"relative",
                         left:"0",
@@ -48,7 +50,7 @@ const Header = () =>{
                             flexGrow:"0.3",
                             width:"15%"
                         }}>
-                            <Button disabled={(Board.columns.length===0) ? true : false}
+                            <Button disabled={(columns) ? true : false}
                             onClick={()=>Dispatch(toggleDisplay())}
                             variant="contained"
                             sx={{

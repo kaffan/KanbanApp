@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { enableMapSet } from "immer";
+enableMapSet();
 const Columns = createSlice({
     name:"Columns",
     initialState : new Set(),
