@@ -13,6 +13,7 @@ const EditBoard = () =>{
     console.log(state);
     const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
+    console.log(state.Columns);
     const [ columns, SetColumns ] = useState(()=>([...state.Columns].map((ele)=>{
         if(ele.boardName===BoardName)
           return ele;

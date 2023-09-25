@@ -10,7 +10,8 @@ const ColumnDisplay = ({columns, CurrentBoard}) =>{
     return(
         <Fragment>
             <Grid container direction="row" spacing={2} sx={{
-                height:"85%",
+                position:"relative",
+                height:"100%",
                 weight:"100%",
                 padding:"15px",
                 flexWrap:"nowrap",

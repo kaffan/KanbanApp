@@ -8,7 +8,7 @@ const Header = () =>{
     const Board = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const state = useSelector((state)=>state);
     const Dispatch = useDispatch();
-    console.log(Board);
+    console.log(state.Columns);
     const columns = (Board) ? [...state.Columns].filter((ele)=>ele.boardName===Board.name) : undefined;
     console.log(columns);
     return(
