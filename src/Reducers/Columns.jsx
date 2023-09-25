@@ -6,7 +6,9 @@ const Columns = createSlice({
     initialState : new Set(),
     reducers : {
         AddColumn(state,action){
-            state = new Set(...state, ...action.payload);
+            // console.log(state+" "+action.payload);
+            state = new Set([...state, ...action.payload]);
+            return state;
         }
     }
 });

@@ -9,7 +9,7 @@ const DisplayBoards = () =>{
     const state = useSelector((state)=>state);
     const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const columns = [...state.Columns].filter((ele)=>ele.boardName===CurrentBoard.name);
-    // console.log(globalState);
+    console.log(state);
     return(
         <Fragment>
             {/* <Header Element={state}></Header> */}

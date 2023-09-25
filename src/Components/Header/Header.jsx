@@ -9,7 +9,8 @@ const Header = () =>{
     const state = useSelector((state)=>state);
     const Dispatch = useDispatch();
     console.log(Board);
-    const columns = (Board) ? [...state.Columns].map((ele)=>ele.boardName===Board.name) : undefined;
+    const columns = (Board) ? [...state.Columns].filter((ele)=>ele.boardName===Board.name) : undefined;
+    console.log(columns);
     return(
         <Fragment>
             <Grid container direction="column" sx={{
@@ -50,7 +51,7 @@ const Header = () =>{
                             flexGrow:"0.3",
                             width:"15%"
                         }}>
-                            <Button disabled={(columns) ? true : false}
+                            <Button disabled={(columns.length) ? false : true}
                             onClick={()=>Dispatch(toggleDisplay())}
                             variant="contained"
                             sx={{

@@ -17,11 +17,12 @@ const EditBoard = () =>{
         if(ele.boardName===BoardName)
           return ele;
     })));
-    console.log(CurrentBoard);
+    console.log(columns);
     const [ displayState2, SetDisplayState2 ] = useState("none");
     const EditBoardHandler = () =>{
-        const payload = new Set(columns.map((ele)=>ele));
-        Dispatch(AddColumn())
+        const payload = columns.map((ele)=>ele);
+        console.log(payload);
+        Dispatch(AddColumn(payload))
         Dispatch(toggleDisplay());
     }
     const addHandler = () =>{
@@ -144,7 +145,7 @@ const EditBoard = () =>{
                                         border: "1px solid lightgrey",
                                         padding: "5px",
                                         borderRadius: "10px"
-                                    }} item>{ele.columnName}</Grid>
+                                    }} item>{ele.colName}</Grid>
                                     <Grid sx={{
                                         padding: "5px",
                                         cursor: "pointer"
