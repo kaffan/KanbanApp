@@ -7,9 +7,12 @@ const Columns = createSlice({
     reducers : {
         AddColumn(state,action){
             // console.log(state+" "+action.payload);
-            let arr = Array.from(state);
-            arr = arr.filter((ele)=>{if(Object.keys(ele).length){return ele}})
-            state = new Set([...state, ...action.payload]);
+            let arr = [];
+            for (let value of state){
+                if(value)
+                arr.push(value);
+            }
+            state = new Set([...arr, ...action.payload]);
             return state;
         }
     }
