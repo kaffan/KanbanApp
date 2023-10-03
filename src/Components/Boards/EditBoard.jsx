@@ -13,10 +13,13 @@ const EditBoard = () =>{
     console.log(state);
     const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
-    console.log(state.Columns);
+    console.log([...state.Columns]);
     const [ columns, SetColumns ] = useState(()=>([...state.Columns].map((ele)=>{
-        if(ele.boardName===BoardName)
+        // console.log(ele);
+        if(ele[1]===BoardName)
           return ele;
+        else
+         return;
     })));
     console.log(columns);
     const [ displayState2, SetDisplayState2 ] = useState("none");
@@ -27,7 +30,7 @@ const EditBoard = () =>{
         Dispatch(toggleDisplay());
     }
     const addHandler = () =>{
-        const NewColumn = {boardName : BoardName, colName : ref.current.value};
+        const NewColumn = [ref.current.value, BoardName];
         ref.current.value = "";
         SetColumns((prevState)=>[...prevState, NewColumn]);
         closeHandler();
@@ -135,7 +138,7 @@ const EditBoard = () =>{
                             height:"10vh"
                         }}>
                             
-                            {(columns!=[]) && columns.map((ele,i)=>(
+                            {(columns.length!=0) && columns.map((ele,i)=>(
                             <Grid item key={i}>
                                 <Grid sx={{
                                     margin: "5px 0",
@@ -146,7 +149,7 @@ const EditBoard = () =>{
                                         border: "1px solid lightgrey",
                                         padding: "5px",
                                         borderRadius: "10px"
-                                    }} item>{ele.colName}</Grid>
+                                    }} item>{ele[0]}</Grid>
                                     <Grid sx={{
                                         padding: "5px",
                                         cursor: "pointer"

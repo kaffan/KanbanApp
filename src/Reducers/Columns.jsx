@@ -10,9 +10,9 @@ const Columns = createSlice({
             let arr = [];
             for (let value of state){
                 if(value)
-                arr.push(value);
+                arr.push([...value]);
             }
-            state = new Set([...arr, ...action.payload]);
+            state = new Map([...arr, ...action.payload]);
             return state;
         }
     }

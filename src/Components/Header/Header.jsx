@@ -9,7 +9,7 @@ const Header = () =>{
     const state = useSelector((state)=>state);
     const Dispatch = useDispatch();
     console.log(state.Columns);
-    const columns = (Board) ? [...state.Columns].filter((ele)=>ele.boardName===Board.name) : undefined;
+    const columns = (Board) ? [...state.Columns].filter((ele)=>ele[1]===Board.name) : undefined;
     console.log(columns);
     return(
         <Fragment>

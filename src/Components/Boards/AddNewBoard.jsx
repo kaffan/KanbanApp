@@ -23,7 +23,7 @@ const AddNewBoard = () =>{
         // columns: columnState.map((ele)=>({columnName:ele,columnTasks:[]})),
         clicked:true,
       }
-      const payload2 = new Set(columnState.map((ele) => ({ boardName: name, colName: ele})));
+      const payload2 = new Map(columnState.map((ele) => ([ele, name])));
       // Dispatch(toggleClick(name));
       Dispatch(AddColumn((function () {
         Dispatch(AddANewBoard(payload));
