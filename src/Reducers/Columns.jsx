@@ -8,10 +8,9 @@ const Columns = createSlice({
         AddColumn(state,action){
             // console.log(state+" "+action.payload);
             let arr = [];
-            for (let value of state){
-                if(value)
-                arr.push([...value]);
-            }
+            state.forEach((val,key)=>{
+                arr.push([key,val]);
+            })
             state = new Map([...arr, ...action.payload]);
             return state;
         }

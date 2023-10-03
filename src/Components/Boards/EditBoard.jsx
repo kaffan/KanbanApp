@@ -14,12 +14,10 @@ const EditBoard = () =>{
     const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
     console.log([...state.Columns]);
-    const [ columns, SetColumns ] = useState(()=>([...state.Columns].map((ele)=>{
+    const [ columns, SetColumns ] = useState(()=>([...state.Columns].filter((ele)=>{
         // console.log(ele);
         if(ele[1]===BoardName)
           return ele;
-        else
-         return;
     })));
     console.log(columns);
     const [ displayState2, SetDisplayState2 ] = useState("none");
