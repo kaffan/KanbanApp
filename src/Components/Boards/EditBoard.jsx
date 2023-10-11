@@ -13,22 +13,27 @@ const EditBoard = () =>{
     console.log(state);
     const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const BoardName = (Object.keys(CurrentBoard).length) ? CurrentBoard.name: "";
-    console.log([...state.Columns]);
-    const [ columns, SetColumns ] = useState(()=>([...state.Columns].filter((ele)=>{
-        // console.log(ele);
-        if(ele[1]===BoardName)
-          return ele;
-    })));
+    // console.log([...state.Columns]);
+    const [ columns, SetColumns ] = useState(()=>{
+        if(CurrentBoard.columns){
+            let arr = [];
+            for(let [key,val] of CurrentBoard.columns){
+                arr.push([key,val]);
+            }
+            return arr;
+        }
+        return [];
+    });
     console.log(columns);
     const [ displayState2, SetDisplayState2 ] = useState("none");
     const EditBoardHandler = () =>{
         const payload = columns.map((ele)=>ele);
         console.log(payload);
-        Dispatch(AddColumn(payload))
+        Dispatch(UpdateBoard(payload));
         Dispatch(toggleDisplay());
     }
     const addHandler = () =>{
-        const NewColumn = [ref.current.value, BoardName];
+        const NewColumn = [ref.current.value,[]];
         ref.current.value = "";
         SetColumns((prevState)=>[...prevState, NewColumn]);
         closeHandler();

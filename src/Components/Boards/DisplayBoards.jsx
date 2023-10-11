@@ -8,7 +8,14 @@ import ColumnDisplay from "../Columns/ColumnDisplay";
 const DisplayBoards = () =>{
     const state = useSelector((state)=>state);
     const CurrentBoard = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
-    const columns = [...state.Columns].filter((ele)=>ele[1]===CurrentBoard.name);
+    console.log(CurrentBoard.columns)
+    let colArr = [];
+    if(CurrentBoard.columns){
+        for(let [key,val] of CurrentBoard.columns){
+            colArr.push([key,val]);
+        }
+    }
+    const columns = colArr;
     console.log(state);
     return(
         <Fragment>

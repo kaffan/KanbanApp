@@ -3,7 +3,7 @@ import { enableMapSet } from "immer";
 enableMapSet();
 const Columns = createSlice({
     name:"Columns",
-    initialState : new Set(),
+    initialState : [],
     reducers : {
         AddColumn(state,action){
             // console.log(state+" "+action.payload);
@@ -11,7 +11,7 @@ const Columns = createSlice({
             state.forEach((val,key)=>{
                 arr.push([key,val]);
             })
-            state = new Map([...arr, ...action.payload]);
+            state = [...arr, ...action.payload];
             return state;
         }
     }

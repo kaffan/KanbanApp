@@ -10,7 +10,7 @@ import { AddColumn } from "../../Reducers/Columns";
 const AddNewBoard = () =>{
   const state = useSelector((state)=>state.AddNewBoardB);
   const [ displayState, SetDisplayState] = useState("none");
-  const [ columnState, SetColumnState ] = useState([]);
+  const [ columnState, SetColumnState ] = useState(()=>state.Columns.map((ele)=>[...ele]));
   const Dispatch = useDispatch();
   const ref = useRef(null);
   const ref2 = useRef(null);
@@ -20,17 +20,17 @@ const AddNewBoard = () =>{
     if(name!=''){
       const payload = {
         name:name,
-        // columns: columnState.map((ele)=>({columnName:ele,columnTasks:[]})),
+        columns: new Map(...columnState.map((ele)=>([ele,[]]))),
         clicked:true,
       }
-      const payload2 = new Map(columnState.map((ele) => ([ele, name])));
+      // const payload2 = new Map(columnState.map((ele) => ([ele, name])));
       // Dispatch(toggleClick(name));
-      Dispatch(AddColumn((function () {
-        Dispatch(AddANewBoard(payload));
-        return payload2;
-      })()));
+      // Dispatch(AddColumn((function () {
+      Dispatch(AddANewBoard(payload));
+      //   return payload2;
+      // })()));
       document.getElementById('N').value = '';
-      SetColumnState([]);
+      // SetColumnState([]);
       Dispatch(toggleDisplay());
     }
   }
