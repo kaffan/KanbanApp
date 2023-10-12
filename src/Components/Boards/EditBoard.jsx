@@ -27,7 +27,7 @@ const EditBoard = () =>{
     console.log(columns);
     const [ displayState2, SetDisplayState2 ] = useState("none");
     const EditBoardHandler = () =>{
-        const payload = columns.map((ele)=>ele);
+        const payload = {...CurrentBoard,columns : new Map(columns.map((ele)=>ele))};
         console.log(payload);
         Dispatch(UpdateBoard(payload));
         Dispatch(toggleDisplay());

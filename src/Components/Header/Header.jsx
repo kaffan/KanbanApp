@@ -8,8 +8,8 @@ const Header = () =>{
     const Board = useSelector((state)=>state.Boards.find((ele)=>ele.clicked));
     const state = useSelector((state)=>state);
     const Dispatch = useDispatch();
-    console.log(state.Columns);
-    const columns = (Board) ? [...state.Columns].filter((ele)=>ele[1]===Board.name) : undefined;
+    // console.log(Board.Columns);
+    const columns = (Board && Board.columns) ? Object.keys(Board.columns) : undefined;
     console.log(columns);
     return(
         <Fragment>
@@ -30,7 +30,7 @@ const Header = () =>{
                     width:"79%",
                     backgroundColor:"white"
                 }}>
-                    {Board && Object.keys(Board).length!==0 &&
+                    {Board && columns!==0 &&
                     <Grid container sx={{
                         position:"relative",
                         left:"0",
@@ -51,7 +51,7 @@ const Header = () =>{
                             flexGrow:"0.3",
                             width:"15%"
                         }}>
-                            <Button disabled={(columns.length) ? false : true}
+                            <Button disabled={(columns) ? false : true}
                             onClick={()=>Dispatch(toggleDisplay())}
                             variant="contained"
                             sx={{

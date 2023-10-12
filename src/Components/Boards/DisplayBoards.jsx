@@ -16,7 +16,7 @@ const DisplayBoards = () =>{
         }
     }
     const columns = colArr;
-    console.log(state);
+    console.log(colArr);
     return(
         <Fragment>
             {/* <Header Element={state}></Header> */}

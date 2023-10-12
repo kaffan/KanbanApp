@@ -8,9 +8,9 @@ import { AddANewBoard, toggleClick } from "../../Reducers/Boards";
 import { AddColumn } from "../../Reducers/Columns";
 
 const AddNewBoard = () =>{
-  const state = useSelector((state)=>state.AddNewBoardB);
+  const state = useSelector((state)=>state);
   const [ displayState, SetDisplayState] = useState("none");
-  const [ columnState, SetColumnState ] = useState(()=>state.Columns.map((ele)=>[...ele]));
+  const [ columnState, SetColumnState ] = useState([]);
   const Dispatch = useDispatch();
   const ref = useRef(null);
   const ref2 = useRef(null);
