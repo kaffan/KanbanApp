@@ -61,7 +61,7 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
             }}
             onClick={()=>{
                 SetTaskState("");
-                document.getElementById("portal4").removeChild(document.getElementById("portal4").firstChild)
+                document.getElementById("portal4").removeChild(document.getElementById("portal4").firstChild);
             }}
             >
             <Grid container direction="column" onClick={(e)=>e.stopPropagation()} sx={{
