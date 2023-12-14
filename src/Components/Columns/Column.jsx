@@ -6,12 +6,22 @@ import EditTask from "../Tasks/EditTask";
 import { toggleVisibility } from "../../Reducers/SetTaskView";
 import { useDispatch, useSelector } from "react-redux";
 
+
+const displayTask = ({CurrentBoard, Task, col}) => {
+    console.log(1);
+    return (
+        <Fragment>
+            {createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={Task} col={col}></ViewTask>, document.getElementById("portal4"))}
+        </Fragment>
+    );
+}
+
 const Column = ({col,CurrentBoard}) =>{
     console.log(col);
     const [ taskToggle, SetTaskToggle ] = useState(false);
     const [ editTask, SetEditTask ] = useState(false);
     const Dispatch = useDispatch();
-    const taskState = useSelector((state)=>state.TaskView);
+    const [ taskState, SetTaskState ] = useState("");
     return(
         <Fragment>
             <Grid container direction="column"
@@ -33,7 +43,7 @@ const Column = ({col,CurrentBoard}) =>{
                     {col.name}
                 </Grid>
                 {(col.Tasks) && col.Tasks.map((ele,i)=>(
-                <Grid key={i} item onClick={()=>Dispatch(toggleVisibility(ele))} sx={{
+                <Grid key={i} item onClick={()=>SetTaskState(ele.name)} sx={{
                     padding:"15px 10px",
                     backgroundColor:"white",
                     width:"100%",
@@ -43,7 +53,8 @@ const Column = ({col,CurrentBoard}) =>{
                     fontWeight:"700",
                     margin:"10px 0"
                 }}> 
-                  {taskState && createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={ele} col={col}></ViewTask>, document.getElementById("portal4"))}
+                  {console.log(taskState)}
+                  {taskState===ele.name && createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={ele} col={col} SetTaskState={SetTaskState}></ViewTask>, document.getElementById("portal4"))}
                   {/* {editTask && createPortal(<EditTask setTask={SetTaskToggle} editTask={SetEditTask} CurrentBoard={CurrentBoard} Task={ele} col={col}></EditTask>, document.getElementById("portal5"))}; */}
                   {ele.name}
                 </Grid>))}

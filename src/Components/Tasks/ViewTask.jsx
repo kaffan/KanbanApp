@@ -43,8 +43,9 @@ function BasicMenu() {
       </div>
     );
   }
-const ViewTask = ({col, Task, CurrentBoard}) =>{
-    const AllColumns = CurrentBoard.columns.filter((col)=>col.columnName);
+const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
+    console.log(CurrentBoard);
+    const AllColumns = CurrentBoard.columns.filter((col)=>col.name);
     console.log(Task);
     return(
         <Fragment>
@@ -56,8 +57,13 @@ const ViewTask = ({col, Task, CurrentBoard}) =>{
                 backgroundColor: "rgba(0,0,0,0.6)",
                 backdropFilter: "blur(1px)",
                 overflowY:"scroll",
-                display:"block"
-            }}>
+                display:"block",
+            }}
+            onClick={()=>{
+                SetTaskState("");
+                document.getElementById("portal4").removeChild(document.getElementById("portal4").firstChild)
+            }}
+            >
             <Grid container direction="column" onClick={(e)=>e.stopPropagation()} sx={{
                 position: "absolute",
                 left: "33%",
