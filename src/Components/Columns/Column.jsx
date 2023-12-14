@@ -30,7 +30,7 @@ const Column = ({col,CurrentBoard}) =>{
                 sx={{
                     margin:"15px 0"
                 }}>
-                    {col[0]}
+                    {col.name}
                 </Grid>
                 {(col.columnTasks) && col.columnTasks.map((ele,i)=>(
                 <Grid key={i} item onClick={()=>Dispatch(toggleVisibility(ele))} sx={{

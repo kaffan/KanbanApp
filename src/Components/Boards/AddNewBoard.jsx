@@ -20,15 +20,10 @@ const AddNewBoard = () =>{
     if(name!=''){
       const payload = {
         name:name,
-        columns: new Map(...columnState.map((ele)=>([ele,[]]))),
+        columns: [...columnState],
         clicked:true,
       }
-      // const payload2 = new Map(columnState.map((ele) => ([ele, name])));
-      // Dispatch(toggleClick(name));
-      // Dispatch(AddColumn((function () {
       Dispatch(AddANewBoard(payload));
-      //   return payload2;
-      // })()));
       document.getElementById('N').value = '';
       // SetColumnState([]);
       Dispatch(toggleDisplay());
@@ -37,7 +32,11 @@ const AddNewBoard = () =>{
   const columnHandler = () =>{
     if(ref2.current.value!==''){
       console.log(ref2.current.value);
-      SetColumnState((prevState)=>[...prevState,ref2.current.value]);
+      const col = {
+        name : ref2.current.value,
+        tasks : []
+      }
+      SetColumnState((prevState)=>[...prevState,col]);
       ref2.current.value = '';
       toggleDisplayState();
     }
@@ -189,7 +188,7 @@ const AddNewBoard = () =>{
                           border:"1px solid lightgrey",
                           padding:"5px",
                           borderRadius:"10px"
-                        }} item>{ele}</Grid>
+                        }} item>{ele.name}</Grid>
                         <Grid onClick={()=>CancelColumnHandler(i)} sx={{
                           padding:"5px",
                           cursor:"pointer"

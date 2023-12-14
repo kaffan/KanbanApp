@@ -12,9 +12,10 @@ const ColumnDisplay = ({columns, CurrentBoard}) =>{
             <Grid container direction="row" spacing={2} sx={{
                 position:"relative",
                 height:"100%",
-                weight:"100%",
-                padding:"15px",
+                minWidth:"100vw",
                 flexWrap:"nowrap",
+                padding:"0 7px",
+                margin:"0",
                 overflowX:"scroll",
                 '&::-webkit-scrollbar':{
                     width:"0.6em"
@@ -42,9 +43,10 @@ const ColumnDisplay = ({columns, CurrentBoard}) =>{
                     </Grid>
                     <Grid onClick={()=>Dispatch(toggleDisplay("block"))} item sx={{
                         position:"relative",
-                        backgroundColor:"#E9EFFA",
-                        height:"80%",
-                        
+                        top:"10%",
+                        backgroundImage:"linear-gradient(to top,lightgrey,grey)",
+                        height:"100%",
+                        minWidth:"100%"
                     }}>
                         <span style={{
                             position:"relative",

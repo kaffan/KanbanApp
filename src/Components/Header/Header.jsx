@@ -30,7 +30,7 @@ const Header = () =>{
                     width:"79%",
                     backgroundColor:"white"
                 }}>
-                    {Board && columns!==0 &&
+                    {Board  &&
                     <Grid container sx={{
                         position:"relative",
                         left:"0",
@@ -51,7 +51,7 @@ const Header = () =>{
                             flexGrow:"0.3",
                             width:"15%"
                         }}>
-                            <Button disabled={(columns) ? false : true}
+                            <Button disabled={(columns.length) ? false : true}
                             onClick={()=>Dispatch(toggleDisplay())}
                             variant="contained"
                             sx={{

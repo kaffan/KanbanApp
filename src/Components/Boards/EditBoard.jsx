@@ -16,10 +16,7 @@ const EditBoard = () =>{
     // console.log([...state.Columns]);
     const [ columns, SetColumns ] = useState(()=>{
         if(CurrentBoard.columns){
-            let arr = [];
-            for(let [key,val] of CurrentBoard.columns){
-                arr.push([key,val]);
-            }
+            let arr = [...CurrentBoard.columns];
             return arr;
         }
         return [];
@@ -27,13 +24,13 @@ const EditBoard = () =>{
     console.log(columns);
     const [ displayState2, SetDisplayState2 ] = useState("none");
     const EditBoardHandler = () =>{
-        const payload = {...CurrentBoard,columns : new Map(columns.map((ele)=>ele))};
+        const payload = {...CurrentBoard,columns : [...columns]};
         console.log(payload);
         Dispatch(UpdateBoard(payload));
         Dispatch(toggleDisplay());
     }
     const addHandler = () =>{
-        const NewColumn = [ref.current.value,[]];
+        const NewColumn = {name : ref.current.value,tasks : []};
         ref.current.value = "";
         SetColumns((prevState)=>[...prevState, NewColumn]);
         closeHandler();
@@ -152,7 +149,7 @@ const EditBoard = () =>{
                                         border: "1px solid lightgrey",
                                         padding: "5px",
                                         borderRadius: "10px"
-                                    }} item>{ele[0]}</Grid>
+                                    }} item>{ele.name}</Grid>
                                     <Grid sx={{
                                         padding: "5px",
                                         cursor: "pointer"

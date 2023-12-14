@@ -11,9 +11,7 @@ const DisplayBoards = () =>{
     console.log(CurrentBoard.columns)
     let colArr = [];
     if(CurrentBoard.columns){
-        for(let [key,val] of CurrentBoard.columns){
-            colArr.push([key,val]);
-        }
+        colArr = [...CurrentBoard.columns];
     }
     const columns = colArr;
     console.log(colArr);
