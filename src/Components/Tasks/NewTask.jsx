@@ -26,8 +26,9 @@ const NewTask = () => {
         };
         const columnName = ref4.current.value;
         CurrentBoard.columns.map((ele)=>{
-            if(ele.columnName===columnName){
-                ele.columnTasks = [ ...ele.columnTasks, NewTask ]
+            if(ele.name===columnName){
+                console.log(ele.Tasks);
+                ele.Tasks = [ ...ele.Tasks, NewTask ]
             }
         });
         Dispatch(UpdateBoard(CurrentBoard));
@@ -217,7 +218,7 @@ const NewTask = () => {
                             borderRadius: "7px"
                         }}>
                             {CurrentBoard.columns.map((ele)=>(
-                                <option value={ele.columnName}>{ele.columnName}</option>
+                                <option value={ele.name}>{ele.name}</option>
                             ))}
                         </select>
                     </Grid>

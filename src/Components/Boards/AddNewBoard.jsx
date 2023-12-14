@@ -34,7 +34,7 @@ const AddNewBoard = () =>{
       console.log(ref2.current.value);
       const col = {
         name : ref2.current.value,
-        tasks : []
+        Tasks : []
       }
       SetColumnState((prevState)=>[...prevState,col]);
       ref2.current.value = '';
