@@ -44,13 +44,14 @@ function BasicMenu() {
     );
   }
 const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
-    console.log(CurrentBoard);
+    // console.log(state);
+    // const [ displayState, SetDisplayState ] = useState(()=>(state) ? "block" : "none");
     const AllColumns = CurrentBoard.columns.filter((col)=>col.name);
     console.log(Task);
     return(
         <Fragment>
             <div style={{
-                position: "absolute",
+                position: "fixed",
                 width: "100%",
                 height: "100vh",
                 zIndex: "3",
@@ -60,8 +61,8 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                 display:"block",
             }}
             onClick={()=>{
+                console.log(1);
                 SetTaskState("");
-                document.getElementById("portal4").removeChild(document.getElementById("portal4").firstChild);
             }}
             >
             <Grid container direction="column" onClick={(e)=>e.stopPropagation()} sx={{
@@ -152,7 +153,7 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                     }}>Current Status</label><br />
                     <select style={{width:"100%", border:"solid 2px lightgrey", padding:"7px 5px", borderRadius:"7px"}}>
                     {AllColumns.length!==0 && AllColumns.map((Ele)=>(
-                        <option disabled selected={(Ele.columnName===col.columnName) ? 'selected' : ""} value={Ele.columnName}>{Ele.columnName}</option>
+                        <option disabled selected={(Ele.name===col.name) ? 'selected' : ""} value={Ele.name}>{Ele.name}</option>
                     ))}
                     </select>
                 </Grid>
