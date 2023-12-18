@@ -23,7 +23,10 @@ const AddNewBoard = () =>{
         columns: [...columnState],
         clicked:true,
       }
-      Dispatch(AddANewBoard(payload));
+      Dispatch(toggleClick((()=>{
+        Dispatch(AddANewBoard(payload));
+        return payload.name;
+      })()));
       document.getElementById('N').value = '';
       // SetColumnState([]);
       Dispatch(toggleDisplay());
