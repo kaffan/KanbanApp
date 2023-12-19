@@ -36,7 +36,7 @@ const NewTask = () => {
     }
     const subtaskHanlder = () =>{
         const val = ref1.current.value;
-        SetSubTasks((prevState)=>[...prevState, val]);
+        SetSubTasks((prevState)=>[...prevState, { val:val, checked:false}]);
         ref1.current.value = "";
         closeSubTask();
     }
@@ -167,7 +167,7 @@ const NewTask = () => {
                                         border: "1px solid lightgrey",
                                         padding: "5px",
                                         borderRadius: "10px"
-                                    }} item>{ele}</Grid>
+                                    }} item>{ele.val}</Grid>
                                     <Grid sx={{
                                         padding: "5px",
                                         cursor: "pointer"

@@ -7,14 +7,6 @@ import { toggleVisibility } from "../../Reducers/SetTaskView";
 import { useDispatch, useSelector } from "react-redux";
 
 
-const displayTask = ({CurrentBoard, Task, col}) => {
-    console.log(1);
-    return (
-        <Fragment>
-            {createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={Task} col={col}></ViewTask>, document.getElementById("portal4"))}
-        </Fragment>
-    );
-}
 
 const Column = ({col,CurrentBoard}) =>{
     console.log(col);

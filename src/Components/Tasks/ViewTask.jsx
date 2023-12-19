@@ -47,6 +47,7 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
     // console.log(state);
     // const [ displayState, SetDisplayState ] = useState(()=>(state) ? "block" : "none");
     const AllColumns = CurrentBoard.columns.filter((col)=>col.name);
+    let [ subTasks, SetSubtasks ] = useState([...Task.subtasks]);
     console.log(Task);
     return(
         <Fragment>
@@ -135,8 +136,8 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                             color: "rgb(130, 143, 163)",
                             fontWeight:"600"
                             }}>
-                                <input style={{padding:"5px"}} type="checkbox" id={i} />
-                                <label style={{padding:"5px"}}>{ele}</label>
+                                <input style={{padding:"5px"}} type="checkbox" id={i} checked={ele.checked} />
+                                <label style={{padding:"5px"}}>{ele.val}</label>
                             </Grid>
                         ))}
                     </Grid>
