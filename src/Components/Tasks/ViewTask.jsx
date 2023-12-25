@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -46,8 +46,21 @@ function BasicMenu() {
 const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
     // console.log(state);
     // const [ displayState, SetDisplayState ] = useState(()=>(state) ? "block" : "none");
+    let [ status, SetStatus ] = useState(1);
     const AllColumns = CurrentBoard.columns.filter((col)=>col.name);
-    let [ subTasks, SetSubtasks ] = useState([...Task.subtasks]);
+    let subTasks = [...JSON.parse(JSON.stringify([...Task.subtasks]))];
+    let clickHandler = ()=>{
+        console.log(subTasks);
+        
+        SetTaskState("");
+    }
+    let changeStatus = (e,arr,i) =>{
+        arr[i].checked = !arr[i].checked;
+        console.log(e.target.checked);
+        // e.target.setAttribute("checked",arr[i].checked);
+        e.target.nextSibling.style.textDecoration = (arr[i].checked) ? "line-through":"none";
+        // SetStatus((state) => !state)
+    }
     console.log(Task);
     return(
         <Fragment>
@@ -61,19 +74,16 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                 overflowY:"scroll",
                 display:"block",
             }}
-            onClick={()=>{
-                console.log(1);
-                SetTaskState("");
-            }}
+            onClick={clickHandler}
             >
             <Grid container direction="column" onClick={(e)=>e.stopPropagation()} sx={{
                 position: "absolute",
                 left: "33%",
                 zIndex: "1",
-                top:"20%",
+                top:"24%",
                 margin: "15px",
                 padding: "25px",
-                width: "30%",
+                width: "33%",
                 height: "fit-content",
                 backdropFilter: "blur(5px)",
                 backgroundColor: "rgba(255, 255, 255, 1)",
@@ -91,7 +101,7 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                         alignItems:"center"
                     }}>
                         <Grid item sx={{
-                            width:"80%",
+                            width:"calc(100% - 64px)",
                             wordWrap:"break-word",
                             fontSize:"20px",
                             lineHeight:"15px"
@@ -126,7 +136,7 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                                 fontWeight:"700"
                             }}>Subtasks</label>
                         </Grid>
-                        {Task.subtasks.length!==0 && Task.subtasks.map((ele,i)=>(
+                        {subTasks.length!==0 && subTasks.map((ele,i,arr)=>(
                             <Grid  item sx={{
                             padding: "7px 5px",
                             margin: "5px 0",
@@ -136,8 +146,8 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                             color: "rgb(130, 143, 163)",
                             fontWeight:"600"
                             }}>
-                                <input style={{padding:"5px"}} type="checkbox" id={i} checked={ele.checked} />
-                                <label style={{padding:"5px"}}>{ele.val}</label>
+                                <input style={{padding:"5px"}} type="checkbox" id={i}  onChange={(e)=>changeStatus(e,arr,i)} />
+                                <label style={{padding:"5px", textDecoration:(ele.checked) ? "line-through" : "none"}}>{ele.val}</label>
                             </Grid>
                         ))}
                     </Grid>
@@ -150,7 +160,8 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                         color:"rgb(130, 143, 163)",
                         fontSize:"16px",
                         lineHeight: "20px",
-                        fontWeight:"500"
+                        fontWeight:"500",
+                        margin:"7px 0"
                     }}>Current Status</label><br />
                     <select style={{width:"100%", border:"solid 2px lightgrey", padding:"7px 5px", borderRadius:"7px"}}>
                     {AllColumns.length!==0 && AllColumns.map((Ele)=>(

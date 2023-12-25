@@ -16,6 +16,7 @@ const Column = ({col,CurrentBoard}) =>{
     const [ taskState, SetTaskState ] = useState("");
     return(
         <Fragment>
+            {console.log(col)}
             <Grid container direction="column"
             sx={{
                 textAlign:"left",
@@ -39,7 +40,7 @@ const Column = ({col,CurrentBoard}) =>{
                     padding:"15px 10px",
                     backgroundColor:"white",
                     width:"100%",
-                    boxShadow:"2px 2px 5px lightgrey",
+                    boxShadow: "0 4px 6px rgba(54,78,126,.102)",
                     borderRadius:"7px",
                     fontSize:"17px",
                     fontWeight:"700",

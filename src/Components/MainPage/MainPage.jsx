@@ -20,7 +20,7 @@ const MainPage = () =>{
                 width: "100%"
             }}>
                 <Grid item sx={{
-                    height: "15%",
+                    height: "100px",
                     width: "100%",
                 }}>
                     <Header></Header>
@@ -34,13 +34,13 @@ const MainPage = () =>{
                         height: "100%"
                     }}>
                         {state && <Grid item sx={{
-                            width: "21%"
+                            width: "300px"
                         }}>
                             <WholeBar></WholeBar>
                         </Grid>
                         }
                         <Grid item sx={{
-                            width: (state) ? "79%" :"100%",
+                            width: (state) ? "calc(100% - 300px)" :"100%",
                             position: "relative",
                             overflowX:"scroll",
                             '&::-webkit-scrollbar': {

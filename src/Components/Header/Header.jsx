@@ -19,15 +19,15 @@ const Header = () =>{
             }}>
                 <Grid item sx={{
                     height:"100%",
-                    width:"21%",
-                    borderRight:"solid 0.5px lightgrey"
+                    width:"18%",
+                    // borderRight:"solid 0.5px lightgrey"
                     // position:"relative"
                 }}>
                     <Logo></Logo>
                 </Grid>
                 <Grid item sx={{
                     height:"100%",
-                    width:"79%",
+                    width:"82%",
                     backgroundColor:"white"
                 }}>
                     {Board  &&
