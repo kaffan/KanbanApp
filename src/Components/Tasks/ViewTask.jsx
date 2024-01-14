@@ -1,10 +1,14 @@
 import { Grid } from "@mui/material";
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useDispatch } from "react-redux";
+import { UpdateBoard } from "../../Reducers/Boards";
+import { createPortal } from "react-dom";
+import EditTask from "./EditTask";
 
-function BasicMenu() {
+function BasicMenu({ EditTask }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -14,6 +18,8 @@ function BasicMenu() {
       setAnchorEl(null);
     };
     const editTaskHandler = () =>{
+        EditTask();
+        handleClose();
         // setTask(false);
         // editTask(true);
     }
@@ -44,26 +50,54 @@ function BasicMenu() {
     );
   }
 const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
-    // console.log(state);
+    console.log(col);
     // const [ displayState, SetDisplayState ] = useState(()=>(state) ? "block" : "none");
+    let Dispatch = useDispatch();
+    let newTask, newCol, payload;
+    let [ toggle, SetToggle ] = useState(false);
     let [ status, SetStatus ] = useState(1);
-    const AllColumns = CurrentBoard.columns.filter((col)=>col.name);
+    const AllColumns = CurrentBoard.columns.filter((column)=>column.name);
     let subTasks = [...JSON.parse(JSON.stringify([...Task.subtasks]))];
+    let updateBoard = () =>{
+        newTask = {...Task, subtasks : subTasks};
+        newCol = { ...col , Tasks : col.Tasks.map((Task) => {
+            if(Task.name===newTask.name) {return newTask}
+            else{
+                return Task;
+            }
+        }) };
+         payload = { ...CurrentBoard , columns : CurrentBoard.columns.map((col) => {
+            if(col.name===newCol.name){return newCol}
+            else{
+                return col;
+            }
+        }) };
+        Dispatch(UpdateBoard(payload));
+    }
     let clickHandler = ()=>{
-        console.log(subTasks);
-        
-        SetTaskState("");
+        updateBoard();
+        SetTaskState("");     
     }
     let changeStatus = (e,arr,i) =>{
         arr[i].checked = !arr[i].checked;
-        console.log(e.target.checked);
+        console.log(e);
+        e.target.setAttribute("checked",arr[i].checked);
+        console.log(e.target);
         // e.target.setAttribute("checked",arr[i].checked);
         e.target.nextSibling.style.textDecoration = (arr[i].checked) ? "line-through":"none";
         // SetStatus((state) => !state)
     }
+    let editTask = () =>{
+        console.log(1);
+        updateBoard();
+        SetToggle((prevState)=>!prevState);
+        console.log(toggle);
+    }
     console.log(Task);
     return(
         <Fragment>
+            {document.getElementById("portal4").innerHTML = ""}
+            {toggle && createPortal(<EditTask col={newCol} Task={newTask} CurrentBoard={CurrentBoard}></EditTask> , document.getElementById("portal4"))}
             <div style={{
                 position: "fixed",
                 width: "100%",
@@ -109,7 +143,7 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                             {Task.name}
                         </Grid>
                         <Grid item>
-                            <BasicMenu  ></BasicMenu>
+                            <BasicMenu EditTask={editTask} ></BasicMenu>                          
                         </Grid>
                     </Grid>
                 </Grid>
@@ -137,7 +171,7 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                             }}>Subtasks</label>
                         </Grid>
                         {subTasks.length!==0 && subTasks.map((ele,i,arr)=>(
-                            <Grid  item sx={{
+                            <Grid key={i} item sx={{
                             padding: "7px 5px",
                             margin: "5px 0",
                             width:"100%",
@@ -146,7 +180,8 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                             color: "rgb(130, 143, 163)",
                             fontWeight:"600"
                             }}>
-                                <input style={{padding:"5px"}} type="checkbox" id={i}  onChange={(e)=>changeStatus(e,arr,i)} />
+                                {console.log(arr)}
+                                <input style={{padding:"5px"}} type="checkbox" id={i} onChange={(e)=>changeStatus(e,arr,i)} checked={(ele.checked) ? true : false} />
                                 <label style={{padding:"5px", textDecoration:(ele.checked) ? "line-through" : "none"}}>{ele.val}</label>
                             </Grid>
                         ))}
