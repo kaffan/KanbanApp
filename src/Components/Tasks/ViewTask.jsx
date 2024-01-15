@@ -92,14 +92,15 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
     let editTask = () =>{
         console.log(1);
         updateBoard();
+        // document.getElementById("portal5").innerHTML = ""
+        console.log("1view");
         SetToggle((prevState)=>!prevState);
-        console.log(newTask);
+        // SetTaskState("");
     }
     console.log(Task);
     return(
         <Fragment>
-            {document.getElementById("portal4").innerHTML = ""}
-            {toggle && createPortal(<EditTask col={newCol.current} Task={newTask.current} ></EditTask> , document.getElementById("portal4"))}
+            {toggle && createPortal(<EditTask SetTaskState={SetTaskState} col={newCol.current} Task={newTask.current} ></EditTask> , document.getElementById("portal5"))}
             <div style={{
                 position: "fixed",
                 width: "100%",

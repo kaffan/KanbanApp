@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 // import { toggleDisplay } from "../../Reducers/AddNewTask";
 import { UpdateBoard } from "../../Reducers/Boards";
 
-const EditTask = ({ Task, col }) => {
+const EditTask = ({ Task, col, SetTaskState }) => {
+    document.getElementById("portal4").innerHTML = "";
     const Dispatch = useDispatch();
     // const CurrentBoard = {...useSelector((state)=>state.Boards.find((ele)=>ele.clicked))}; we need to create deep copy of currentboard
     const CurrentBoard = JSON.parse(JSON.stringify(useSelector((state) => state.Boards.find((ele) => ele.clicked))));
@@ -43,9 +44,10 @@ const EditTask = ({ Task, col }) => {
     const closeSubTask = () => {
         SetDisplay("none");
     }
-    const clickHandler = () => {
-        let node = document.getElementById("portal4");
-        node.removeChild(node.firstChild);
+    const clickHandler = (e) => {
+        // SetTaskState("");
+        document.getElementById("portal5").innerHTML = "";
+        // SetTaskState("")
         // Dispatch(toggleDisplay());
         // props.setTask(false);
         // props.editTask(false);
@@ -95,7 +97,7 @@ const EditTask = ({ Task, col }) => {
                 backdropFilter: "blur(1px)",
                 overflowY: "scroll",
                 display: "block"
-            }} onClick={clickHandler}>
+            }} onClick={(e)=>clickHandler(e)}>
                 <Grid container direction="column" onClick={(e) => e.stopPropagation()} spacing={1} sx={{
                     position: "absolute",
                     left: "35%",
@@ -241,6 +243,7 @@ const EditTask = ({ Task, col }) => {
                     </Grid>
                 </Grid>
             </div>
+            {/* {SetTaskState("")} */}
         </Fragment>
     )
 }
