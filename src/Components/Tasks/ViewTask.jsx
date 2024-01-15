@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -53,21 +53,23 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
     console.log(col);
     // const [ displayState, SetDisplayState ] = useState(()=>(state) ? "block" : "none");
     let Dispatch = useDispatch();
-    let newTask, newCol, payload;
+    let newTask = useRef(); 
+    let newCol = useRef(); 
+    let payload = useRef();
     let [ toggle, SetToggle ] = useState(false);
     let [ status, SetStatus ] = useState(1);
     const AllColumns = CurrentBoard.columns.filter((column)=>column.name);
     let subTasks = [...JSON.parse(JSON.stringify([...Task.subtasks]))];
     let updateBoard = () =>{
-        newTask = {...Task, subtasks : subTasks};
-        newCol = { ...col , Tasks : col.Tasks.map((Task) => {
-            if(Task.name===newTask.name) {return newTask}
+        newTask.current = {...Task, subtasks : subTasks};
+        newCol.current = { ...col , Tasks : col.Tasks.map((Task) => {
+            if(Task.name===newTask.current.name) {return newTask.current}
             else{
                 return Task;
             }
         }) };
          payload = { ...CurrentBoard , columns : CurrentBoard.columns.map((col) => {
-            if(col.name===newCol.name){return newCol}
+            if(col.name===newCol.current.name){return newCol.current}
             else{
                 return col;
             }
@@ -91,13 +93,13 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
         console.log(1);
         updateBoard();
         SetToggle((prevState)=>!prevState);
-        console.log(toggle);
+        console.log(newTask);
     }
     console.log(Task);
     return(
         <Fragment>
             {document.getElementById("portal4").innerHTML = ""}
-            {toggle && createPortal(<EditTask col={newCol} Task={newTask} CurrentBoard={CurrentBoard}></EditTask> , document.getElementById("portal4"))}
+            {toggle && createPortal(<EditTask col={newCol.current} Task={newTask.current} ></EditTask> , document.getElementById("portal4"))}
             <div style={{
                 position: "fixed",
                 width: "100%",

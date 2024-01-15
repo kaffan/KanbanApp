@@ -10,13 +10,15 @@ const EditTask = ({ Task, col }) => {
     const CurrentBoard = JSON.parse(JSON.stringify(useSelector((state) => state.Boards.find((ele) => ele.clicked))));
     const state = useSelector((state) => state)
     console.log(CurrentBoard);
-    const [taskObj, SetTaskObj] = useState({});
+    console.log(Task);
+    const [taskObj, SetTaskObj] = useState({...JSON.parse(JSON.stringify(Task))});
     const [display, SetDisplay] = useState("none");
-    const [subTasks, SetSubTasks] = useState([]);
+    const [subTasks, SetSubTasks] = useState([...JSON.parse(JSON.stringify(Task.subtasks))]);
     const ref1 = useRef();
-    const ref2 = useRef();
-    const ref3 = useRef();
+    let [ ref2, SetRef2 ] = useState(taskObj.name);
+    let [ ref3, SetRef3 ] = useState(taskObj.description);
     const ref4 = useRef();
+    console.log(subTasks)
     const taskHandler = () => {
         const NewTask = {
             name: ref2.current.value,
@@ -33,8 +35,8 @@ const EditTask = ({ Task, col }) => {
         clickHandler();
     }
     const subtaskHanlder = () => {
-        const val = ref1.current.value;
-        SetSubTasks((prevState) => [...prevState, val]);
+        const newTask = {val : ref1.current.value, checked : false};
+        SetSubTasks((prevState) => [...prevState, newTask]);
         ref1.current.value = "";
         closeSubTask();
     }
@@ -42,6 +44,8 @@ const EditTask = ({ Task, col }) => {
         SetDisplay("none");
     }
     const clickHandler = () => {
+        let node = document.getElementById("portal4");
+        node.removeChild(node.firstChild);
         // Dispatch(toggleDisplay());
         // props.setTask(false);
         // props.editTask(false);
@@ -116,7 +120,7 @@ const EditTask = ({ Task, col }) => {
                             color: "lightgray",
                             fontWeight: "700"
                         }}>Title</label><br />
-                        <input ref={ref2} type="text" placeholder="e.g. Take coffee break" style={{
+                        <input value={ref2} onChange={(e)=>SetRef2(e.target.value)} type="text" placeholder="e.g. Take coffee break" style={{
                             padding: "10px",
                             margin: "10px 0",
                             width: "90%",
@@ -132,7 +136,7 @@ const EditTask = ({ Task, col }) => {
                             color: "lightgray",
                             fontWeight: "700"
                         }}>Description</label><br />
-                        <textarea ref={ref3} cols="80" rows="1" placeholder="e.g. it's always good to take a break. This 15 mins break will recharge the batteries a little.... " style={{
+                        <textarea value={ref3} onChange={(e)=>SetRef3(e.target.value)} cols="80" rows="1" placeholder="e.g. it's always good to take a break. This 15 mins break will recharge the batteries a little.... " style={{
                             padding: "10px",
                             margin: "10px 0",
                             width: "90%",
@@ -167,7 +171,7 @@ const EditTask = ({ Task, col }) => {
                                             border: "1px solid lightgrey",
                                             padding: "5px",
                                             borderRadius: "10px"
-                                        }} item>{ele}</Grid>
+                                        }} item>{ele.val}</Grid>
                                         <Grid sx={{
                                             padding: "5px",
                                             cursor: "pointer"
@@ -218,7 +222,7 @@ const EditTask = ({ Task, col }) => {
                             borderRadius: "7px"
                         }}>
                             {CurrentBoard.columns.map((ele) => (
-                                <option value={ele.columnName}>{ele.columnName}</option>
+                                <option value={ele.name}>{ele.name}</option>
                             ))}
                         </select>
                     </Grid>
@@ -233,7 +237,7 @@ const EditTask = ({ Task, col }) => {
                             ":hover": {
                                 color: "#1976d2"
                             }
-                        }}>Create New Task</Button>
+                        }}>Edit Task</Button>
                     </Grid>
                 </Grid>
             </div>
