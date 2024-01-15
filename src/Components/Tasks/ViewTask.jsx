@@ -77,6 +77,7 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
         Dispatch(UpdateBoard(payload));
     }
     let clickHandler = ()=>{
+        console.log("settask");
         updateBoard();
         SetTaskState("");     
     }

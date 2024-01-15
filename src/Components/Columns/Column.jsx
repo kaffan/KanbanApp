@@ -36,7 +36,10 @@ const Column = ({col,CurrentBoard}) =>{
                     {col.name}
                 </Grid>
                 {(col.Tasks) && col.Tasks.map((ele,i)=>(
-                <Grid key={i} item onMouseDown={()=>SetTaskState(ele.name)} sx={{
+                <Grid key={i} item onClick={()=>{
+                    console.log(21);
+                    SetTaskState(ele.name);
+                }} sx={{
                     padding:"15px 10px",
                     backgroundColor:"white",
                     width:"100%",
