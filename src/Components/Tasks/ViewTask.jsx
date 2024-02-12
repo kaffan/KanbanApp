@@ -92,10 +92,10 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
     }
     let editTask = () =>{
         console.log(1);
-        updateBoard();
-        // document.getElementById("portal5").innerHTML = ""
-        console.log("1view");
-        SetToggle((prevState)=>!prevState);
+        // updateBoard();
+        // // document.getElementById("portal5").innerHTML = ""
+        // console.log("1view");
+        // SetToggle((prevState)=>!prevState);
         // SetTaskState("");
     }
     console.log(Task);
@@ -112,9 +112,9 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
                 overflowY:"scroll",
                 display:"block",
             }}
-            onClick={clickHandler}
+            onMouseDown={clickHandler}
             >
-            <Grid container direction="column" onClick={(e)=>e.stopPropagation()} sx={{
+            <Grid container direction="column" onMouseDown={(e)=>e.stopPropagation()} sx={{
                 position: "absolute",
                 left: "33%",
                 zIndex: "1",

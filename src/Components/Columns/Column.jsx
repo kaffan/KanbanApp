@@ -1,12 +1,10 @@
 import { Grid } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import ViewTask from "../Tasks/ViewTask";
 import { createPortal } from "react-dom";
 import EditTask from "../Tasks/EditTask";
 import { toggleVisibility } from "../../Reducers/SetTaskView";
 import { useDispatch, useSelector } from "react-redux";
-
-
 
 const Column = ({col,CurrentBoard}) =>{
     console.log(col);
@@ -14,6 +12,22 @@ const Column = ({col,CurrentBoard}) =>{
     const [ editTask, SetEditTask ] = useState(false);
     const Dispatch = useDispatch();
     const [ taskState, SetTaskState ] = useState("");
+    let ref = useRef([]);
+    // ref.current = [];
+    useEffect(()=>{
+        ref.current.map((ele)=>{
+            ele.addEventListener("click",(e)=>{
+                console.log(e.target.firstChild);
+                console.log(1);
+                SetTaskState(e.target.firstChild.textContent);
+            },{ once : true})
+        })
+    });
+    let addToRefs = (ele) =>{
+        if(ele && !ref.current.includes(ele)){
+            ref.current.push(ele);
+        }
+    }
     return(
         <Fragment>
             {console.log(col)}
@@ -35,11 +49,11 @@ const Column = ({col,CurrentBoard}) =>{
                 }}>
                     {col.name}
                 </Grid>
+                {/* When we attach a event handler with onclick or onmousedown event the function is 
+                going to execute every time this component is re rendered. so when a click event occurs 
+                for 2nd time the event handler will execute twice */}
                 {(col.Tasks) && col.Tasks.map((ele,i)=>(
-                <Grid key={i} item onClick={()=>{
-                    console.log(21);
-                    SetTaskState(ele.name);
-                }} sx={{
+                <Grid ref={addToRefs} key={i} item sx={{
                     padding:"15px 10px",
                     backgroundColor:"white",
                     width:"100%",
