@@ -17,13 +17,14 @@ const Column = ({col,CurrentBoard}) =>{
     useEffect(()=>{
         ref.current.map((ele)=>{
             ele.addEventListener("click",(e)=>{
-                console.log(e.target.firstChild);
+                console.log(e);
                 console.log(1);
-                SetTaskState(e.target.firstChild.textContent);
+                SetTaskState(e.target.id);
             },{ once : true})
         })
     });
     let addToRefs = (ele) =>{
+        console.log(ele);
         if(ele && !ref.current.includes(ele)){
             ref.current.push(ele);
         }
@@ -53,7 +54,7 @@ const Column = ({col,CurrentBoard}) =>{
                 going to execute every time this component is re rendered. so when a click event occurs 
                 for 2nd time the event handler will execute twice */}
                 {(col.Tasks) && col.Tasks.map((ele,i)=>(
-                <Grid ref={addToRefs} key={i} item sx={{
+                <Grid ref={addToRefs} key={i} id={i} item sx={{
                     padding:"15px 10px",
                     backgroundColor:"white",
                     width:"100%",
@@ -63,8 +64,8 @@ const Column = ({col,CurrentBoard}) =>{
                     fontWeight:"700",
                     margin:"10px 0"
                 }}> 
-                  {console.log(taskState)}
-                  {taskState===ele.name && createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={ele} col={col} SetTaskState={SetTaskState}></ViewTask>, document.getElementById("portal4"))}
+                  {console.log(taskState,i)}
+                  {taskState==i && createPortal(<ViewTask CurrentBoard={CurrentBoard} Task={ele} col={col} SetTaskState={SetTaskState}></ViewTask>, document.getElementById("portal4"))}
                   {/* {editTask && createPortal(<EditTask setTask={SetTaskToggle} editTask={SetEditTask} CurrentBoard={CurrentBoard} Task={ele} col={col}></EditTask>, document.getElementById("portal5"))}; */}
                   {ele.name}
                 </Grid>))}

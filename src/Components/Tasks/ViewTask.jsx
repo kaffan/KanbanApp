@@ -79,7 +79,7 @@ const ViewTask = ({col, Task, CurrentBoard, SetTaskState}) =>{
     let clickHandler = ()=>{
         console.log("settask");
         updateBoard();
-        SetTaskState("");     
+        SetTaskState(-1);     
     }
     let changeStatus = (e,arr,i) =>{
         arr[i].checked = !arr[i].checked;
