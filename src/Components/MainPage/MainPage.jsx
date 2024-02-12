@@ -20,13 +20,13 @@ const MainPage = () =>{
                 width: "100%"
             }}>
                 <Grid item sx={{
-                    height: "100px",
+                    height: "20%",
                     width: "100%",
                 }}>
                     <Header></Header>
                 </Grid>
                 <Grid item sx={{
-                    height: "85%",
+                    height: "80%",
                     width: "100%"
                 }}>
                     <Grid container direction="row" sx={{
