@@ -35,7 +35,7 @@ const Header = () =>{
                         position:"relative",
                         left:"0",
                         right:"0",
-                        top:"33px",
+                        top:"35%",
                     }}>
                         <Grid item sx={{
                             width:"75%",

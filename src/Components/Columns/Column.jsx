@@ -11,7 +11,7 @@ const Column = ({col,CurrentBoard}) =>{
     const [ taskToggle, SetTaskToggle ] = useState(false);
     const [ editTask, SetEditTask ] = useState(false);
     const Dispatch = useDispatch();
-    const [ taskState, SetTaskState ] = useState("");
+    const [ taskState, SetTaskState ] = useState(-1);
     let ref = useRef([]);
     // ref.current = [];
     useEffect(()=>{

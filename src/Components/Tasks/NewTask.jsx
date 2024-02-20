@@ -94,7 +94,9 @@ const NewTask = () => {
             }} onClick={clickHandler}>
                 <Grid container direction="column" onClick={(e)=>e.stopPropagation()} spacing={1} sx={{
                     position: "absolute",
-                    left: "35%",
+                    top:"10%",
+                    // bottom:"10%",
+                    left: "32%",
                     zIndex: "1",
                     margin: "15px",
                     padding: "15px",

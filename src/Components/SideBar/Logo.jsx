@@ -15,7 +15,7 @@ const Logo = () =>{
                     position:"absolute",
                     left:"12%",
                     right:"0",
-                    top:"33px",
+                    top:"35%",
                     width:"max-content"
                 }}>
                     <Grid item>
