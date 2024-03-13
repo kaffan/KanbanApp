@@ -45,8 +45,9 @@ const EditTask = ({ Task, col, SetTaskState }) => {
         SetDisplay("none");
     }
     const clickHandler = (e) => {
-        SetTaskState("");
-        document.getElementById("portal5").innerHTML = "";
+        console.log(1);
+        document.getElementById("portal4").innerHTML = "";
+        SetTaskState(-1);
         // SetTaskState("");
         // Dispatch(toggleDisplay());
         // props.setTask(false);
